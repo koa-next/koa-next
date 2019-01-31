@@ -1,0 +1,71 @@
+{
+  "name": "koa-next",
+  "version": "1.0.0",
+  "description": "- 某个中间件最先被执行",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "tslint": "tslint -c tslint.json -p tsconfig.koa.json && tslint -c tslint.json -p tsconfig.json",
+    "tsc": "tsc -p tsconfig.koa.json",
+    "build": "npm run tsc && npm run next-build",
+    "next-build": "next build client",
+    "next-dev": "next dev client",
+    "dev": "nodemon --config nodemon.json",
+    "start": "node index.js",
+    "clean": "ts-clean"
+  },
+  "author": " <PLDaily pcd12321@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "@types/koa": "^2.0.48",
+    "@types/koa-router": "^7.0.37",
+    "@types/lodash": "^4.14.119",
+    "@types/next": "^7.0.6",
+    "@types/node": "^10.12.18",
+    "@types/supertest": "^2.0.7",
+    "@types/zeit__next-typescript": "^0.1.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "cross-env": "^5.2.0",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "ts-clean": "1.0.2",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "tslint-react": "^3.6.0"
+  },
+  "dependencies": {
+    "@zeit/next-typescript": "^1.1.1",
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.11",
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "supertest": "^3.4.2",
+    "typescript": "^3.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run tslint && git add ."
+    }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koa-next/koa-next.git"
+  },
+  "keywords": [
+    "koa.js",
+    "next.js",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/koa-next/koa-next/issues"
+  },
+  "homepage": "https://github.com/koa-next/koa-next#readme"
+}

@@ -1,0 +1,9 @@
+{
+  "exec": "cross-env TS_NODE_PROJECT=tsconfig.koa.json ts-node index.ts",
+  "watch": [
+    "app/**/*",
+    "config/**/*",
+    "index.ts"
+  ],
+  "ext": "ts"
+}

@@ -1,0 +1,60 @@
+{
+  "fix": true,
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest",
+    "tslint-react"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-consecutive-blank-lines": [true, 2],
+    "member-access": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "arrow-parens": false,
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "interface-name": false,
+    "no-submodule-imports": false,
+    "no-this-assignment": false,
+    "jsx-no-lambda": false,
+    "no-console": [
+      false
+    ],
+    "no-string-literal": false,
+    "prefer-conditional-expression": false,
+    "no-unused-expression": [
+      true,
+      "allow-fast-null-checks"
+    ],
+    "ordered-imports": [
+      false
+    ],
+    "object-literal-sort-keys": [
+      false
+    ],
+    "no-var-keyword": true,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "objects": "ignore",
+          "arrays": "ignore",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      }
+    ],
+    "no-var-requires": false,
+    "no-namespace": [
+      true,
+      "allow-declarations"
+    ]
+  },
+  "rulesDirectory": [
+    "app",
+    "client",
+    "config",
+    "utils",
+    "index.ts"
+  ]
+}
