@@ -3,6 +3,11 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest'
   },
   testRegex: '(/test/.*|(\\.|/)test)\\.ts$',
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.koa.json'
+    }
+  }, 
   moduleFileExtensions: ['ts', 'js'],
   // collectCoverage: true,
   coveragePathIgnorePatterns: [

@@ -1,4 +1,4 @@
-import withTypescript from '@zeit/next-typescript';
+import * as withTypescript from '@zeit/next-typescript';
 const conf = withTypescript();
 
 const config = {

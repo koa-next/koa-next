@@ -55,6 +55,7 @@
     "client",
     "config",
     "utils",
-    "index.ts"
+    "app.ts",
+    "server.ts"
   ]
 }
