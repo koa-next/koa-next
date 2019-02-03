@@ -4017,6 +4017,13 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
+koa-next-middleware@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/koa-next-middleware/-/koa-next-middleware-1.0.0.tgz#46e4fa9a349b66f54d62a5f043ca4b3de45624da"
+  dependencies:
+    koa "^2.7.0"
+    typescript "^3.3.1"
+
 koa-router@^7.4.0:
   version "7.4.0"
   resolved "http://registry.npm.taobao.org/koa-router/download/koa-router-7.4.0.tgz#aee1f7adc02d5cb31d7d67465c9eacc825e8c5e0"
@@ -4028,7 +4035,7 @@ koa-router@^7.4.0:
     path-to-regexp "^1.1.1"
     urijs "^1.19.0"
 
-koa@^2.6.2:
+koa@^2.6.2, koa@^2.7.0:
   version "2.7.0"
   resolved "http://registry.npm.taobao.org/koa/download/koa-2.7.0.tgz#7e00843506942b9d82c6cc33749f657c6e5e7adf"
   dependencies:
@@ -6370,7 +6377,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^3.2.2:
+typescript@^3.2.2, typescript@^3.3.1:
   version "3.3.1"
   resolved "http://registry.npm.taobao.org/typescript/download/typescript-3.3.1.tgz#6de14e1db4b8a006ac535e482c8ba018c55f750b"
 

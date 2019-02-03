@@ -3,7 +3,7 @@ import * as Next from 'next';
 import config from './config';
 import router from './app/router';
 import logger from './app/middleware/logger';
-import next from './app/middleware/next';
+import next from 'koa-next-middleware';
 
 const app = new Koa();
 
