@@ -42,8 +42,11 @@
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
+    "next-redux-wrapper": "^3.0.0-alpha.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
     "supertest": "^3.4.2",
     "typescript": "^3.2.2"
   },
