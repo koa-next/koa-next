@@ -1,12 +1,16 @@
 import * as withTypescript from '@zeit/next-typescript';
-const conf = withTypescript();
+import * as withSass from '@zeit/next-sass';
+
+const conf = withTypescript(withSass({
+  cssModules: true
+}));
 
 const config = {
   next: {
     dir: './client',
     dev: true,
     conf: {
-      pageExtensions: ['tsx', 'jsx', 'js'],
+      pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
       ...conf
     }
   }

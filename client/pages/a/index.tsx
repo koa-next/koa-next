@@ -2,6 +2,7 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { INCREMENT, DECREMENT } from '../../redux/reducers/counter';
+import styles from './style.scss';
 
 interface AProps {
   counter: number;
@@ -27,7 +28,8 @@ class A extends React.Component<AProps, any> {
 
   render() {
     return (
-      <div>
+      <div className={styles.wrapper}>
+        <div>test</div>
         <span>{this.props.counter}</span>
         <button onClick={this.increment}>+</button>
         <button onClick={this.decrement}>-</button>
