@@ -25,7 +25,8 @@
     ]
   },
   "include": [
-    "index.ts",
+    "app.ts",
+    "server.ts",
     "next.config.ts",
     "app/**/*",
     "config/**/*",

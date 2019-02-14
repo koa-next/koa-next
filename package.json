@@ -11,7 +11,7 @@
     "next-build": "next build client",
     "next-dev": "next dev client",
     "dev": "nodemon --config nodemon.json",
-    "start": "node index.js",
+    "start": "node server.js",
     "clean": "ts-clean"
   },
   "author": " <PLDaily pcd12321@gmail.com>",
