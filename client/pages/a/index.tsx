@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { INCREMENT, DECREMENT } from '../../redux/reducers/counter';
@@ -31,8 +32,8 @@ class A extends React.Component<AProps, any> {
       <div className={styles.wrapper}>
         <div>test</div>
         <span>{this.props.counter}</span>
-        <button onClick={this.increment}>+</button>
-        <button onClick={this.decrement}>-</button>
+        <Button onClick={this.increment}>+</Button>
+        <Button onClick={this.decrement}>-</Button>
       </div>
     );
   }

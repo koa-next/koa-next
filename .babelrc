@@ -5,5 +5,12 @@
   ],
   "plugins": [
     ["lodash"],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      }
+    ],
   ],
 }
