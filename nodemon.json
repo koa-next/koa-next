@@ -3,7 +3,8 @@
   "watch": [
     "app/**/*",
     "config/**/*",
-    "index.ts"
+    "app.ts",
+    "server.ts"
   ],
   "ext": "ts"
 }
