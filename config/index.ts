@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 
 export interface IConfig {
   key: string;
+  log4: object;
   next?: object;
 }
 

@@ -43,6 +43,7 @@
     "css-loader": "1.0.0",
     "extracted-loader": "^1.0.7",
     "koa": "^2.6.2",
+    "koa-log4": "^2.3.2",
     "koa-next-middleware": "^1.0.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
