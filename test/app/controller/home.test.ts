@@ -1,7 +1,7 @@
 import * as request from 'supertest';
 import app from '../../../app';
 
-const server = request(app.listen(3000));
+const server = request(app.listen(3001));
 
 describe('test/app/controller/home.test.ts', () => {
   it('should GET /', (done) => {
