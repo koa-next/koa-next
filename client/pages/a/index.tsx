@@ -30,10 +30,14 @@ class A extends React.Component<AProps, any> {
   render() {
     return (
       <div className={styles.wrapper}>
-        <div>test</div>
-        <span>{this.props.counter}</span>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
+        <p>hello, koa-next</p>
+        <div className={styles.example}>
+          <span>{this.props.counter}</span>
+          <div className={styles.btn}>
+            <Button onClick={this.increment}>+</Button>
+            <Button onClick={this.decrement}>-</Button>
+          </div>
+        </div>
       </div>
     );
   }
