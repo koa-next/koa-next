@@ -1,10 +1,10 @@
 {
   "name": "koa-next",
   "version": "1.0.0",
-  "description": "- 某个中间件最先被执行",
+  "description": "A FrameWork Based On Koa.js And Next.js",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest --forceExit",
     "tslint": "tslint -c tslint.json -p tsconfig.koa.json && tslint -c tslint.json -p tsconfig.json",
     "tsc": "tsc -p tsconfig.koa.json",
     "build": "npm run tsc && npm run next-build",

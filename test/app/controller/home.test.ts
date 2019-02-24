@@ -4,12 +4,12 @@ import app from '../../../app';
 describe('test/app/controller/home.test.ts', () => {
   let server;
 
-  beforeAll(() => {
-    server = request(app.listen(3001));
+  beforeAll(async () => {
+    server = await request(app.listen(3001));
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async () => {
+    await server.close();
   });
 
   test('should GET /', (done) => {
