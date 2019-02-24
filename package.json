@@ -4,7 +4,7 @@
   "description": "- 某个中间件最先被执行",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "tslint": "tslint -c tslint.json -p tsconfig.koa.json && tslint -c tslint.json -p tsconfig.json",
     "tsc": "tsc -p tsconfig.koa.json",
     "build": "npm run tsc && npm run next-build",
