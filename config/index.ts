@@ -1,6 +1,5 @@
 import defaultConfig from './config.default';
 import localConfig from './config.local';
-import preConfig from './config.pre';
 import prodConfig from './config.prod';
 import testConfig from './config.unittest';
 
@@ -13,13 +12,6 @@ export interface IConfig {
 const env = process.env.NODE_ENV;
 
 const getConfig = () => {
-  if (env && env === 'pre') {
-    return {
-      ...defaultConfig,
-      ...preConfig,
-    };
-  }
-
   if (env && env === 'prod') {
     return {
       ...defaultConfig,
