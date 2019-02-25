@@ -4,7 +4,6 @@
     "@zeit/next-typescript/babel"
   ],
   "plugins": [
-    ["lodash"],
     [
       "import",
       {

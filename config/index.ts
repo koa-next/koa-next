@@ -3,7 +3,6 @@ import localConfig from './config.local';
 import preConfig from './config.pre';
 import prodConfig from './config.prod';
 import testConfig from './config.unittest';
-import * as _ from 'lodash';
 
 export interface IConfig {
   key: string;
@@ -15,18 +14,30 @@ const env = process.env.NODE_ENV;
 
 const getConfig = () => {
   if (env && env === 'pre') {
-    return _.merge({}, defaultConfig, preConfig);
+    return {
+      ...defaultConfig,
+      ...preConfig,
+    };
   }
 
   if (env && env === 'prod') {
-    return _.merge({}, defaultConfig, prodConfig);
+    return {
+      ...defaultConfig,
+      prodConfig,
+    };
   }
 
   if (env && env === 'test') {
-    return _.merge({}, defaultConfig, testConfig);
+    return {
+      ...defaultConfig,
+      ...testConfig,
+    };
   }
 
-  return _.merge({}, defaultConfig, localConfig);
+  return {
+    ...defaultConfig,
+    ...localConfig,
+  };
 };
 
 const config: IConfig = getConfig();
