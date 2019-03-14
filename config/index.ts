@@ -15,7 +15,7 @@ const getConfig = () => {
   if (env && env === 'prod') {
     return {
       ...defaultConfig,
-      prodConfig,
+      ...prodConfig,
     };
   }
 

@@ -7,6 +7,15 @@ const conf = withTypescript({
   webpack(config, options) {
     const { dev, isServer } = options;
 
+    if (!isServer) {
+      config.optimization.splitChunks.cacheGroups.styles = {
+        name: 'styles',
+        test: new RegExp(`\\.+(${['css', 'scss'].join('|')})$`),
+        chunks: 'all',
+        enforce: true,
+      };
+    }
+
     config.module.rules.push({
       test: /\.css$/,
       include: [

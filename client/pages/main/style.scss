@@ -1,4 +1,4 @@
-.pageA {
+.main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -8,5 +8,16 @@
   
   p {
     font-size: 32px;
+  }
+
+  .example {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    
+    >span {
+      font-size: 25px;
+      margin-right: 15px;
+    }
   }
 }
