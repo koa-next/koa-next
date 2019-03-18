@@ -4541,9 +4541,9 @@ koa-log4@^2.3.2:
   dependencies:
     log4js "^3.0.6"
 
-koa-next-middleware@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/koa-next-middleware/-/koa-next-middleware-1.0.0.tgz#46e4fa9a349b66f54d62a5f043ca4b3de45624da"
+koa-next-middleware@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/koa-next-middleware/download/koa-next-middleware-1.0.1.tgz#f8efd2d315a1e368d8a20740c62ccd9977aab956"
   dependencies:
     koa "^2.7.0"
     typescript "^3.3.1"
