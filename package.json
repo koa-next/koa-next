@@ -36,6 +36,7 @@
     "tslint-react": "^3.6.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.0",
     "@zeit/next-typescript": "^1.1.1",
     "antd": "^3.13.2",
     "babel-plugin-import": "^1.11.0",
