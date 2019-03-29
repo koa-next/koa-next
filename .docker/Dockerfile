@@ -13,13 +13,13 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get -y install nodejs
 
 # Install yarn
-RUN apt-get -y install yarn
+RUN npm install yarn -g
 
 # Install git
 RUN apt-get -y install git
 
 # Git clone project
-RUN git clone https://github.com/koa-next/koa-next.git
+RUN git clone https://github.com/koa-next/koa-next.git .
 
 # Install node_modules
 RUN yarn
@@ -27,5 +27,5 @@ RUN yarn
 # Build project
 RUN yarn build
 
-# start project
+# Start project
 CMD ["yarn", "start"]
