@@ -4,7 +4,7 @@ import prodConfig from './config.prod';
 import testConfig from './config.unittest';
 
 export interface IConfig {
-  key: string;
+  keys: string[];
   log4: object;
   next?: object;
 }

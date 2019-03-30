@@ -5,7 +5,7 @@ if (typeof require !== 'undefined') {
 }
 
 const config = {
-  key: '123456',
+  keys: ['123456'],
   log4: {
     appenders: {
       console: {
