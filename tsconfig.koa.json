@@ -30,6 +30,7 @@
     "next.config.ts",
     "app/**/*",
     "config/**/*",
-    "test/**/*"
+    "test/**/*",
+    "utils/**/*"
   ]
 }
