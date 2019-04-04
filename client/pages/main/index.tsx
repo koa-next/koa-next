@@ -3,11 +3,15 @@ import Router from 'next/router';
 import { Button } from 'antd';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { INCREMENT, DECREMENT } from '../../redux/reducers/counter';
+import { State } from '../../redux/modules';
+import {
+  searchCounter,
+  State as counterState
+} from '../../redux/modules/counter';
 import styles from './style.scss';
 
 interface MainProps {
-  counter: number;
+  counter: counterState;
   dispatch: Dispatch;
 }
 
@@ -17,15 +21,11 @@ class Main extends React.Component<MainProps, any> {
   }
 
   increment = () => {
-    this.props.dispatch({
-      type: INCREMENT
-    });
+    this.props.dispatch(searchCounter());
   }
 
   decrement = () => {
-    this.props.dispatch({
-      type: DECREMENT
-    });
+    this.props.dispatch(searchCounter());
   }
 
   gotoPageA = () => {
@@ -37,11 +37,12 @@ class Main extends React.Component<MainProps, any> {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className={styles.main}>
         <p>hello, koa-next</p>
         <div className={styles.example}>
-          <span>{this.props.counter}</span>
+          <span>{this.props.counter.num}</span>
           <div className={styles.btn}>
             <Button onClick={this.increment}>+</Button>
             <Button onClick={this.decrement}>-</Button>
@@ -54,4 +55,4 @@ class Main extends React.Component<MainProps, any> {
   }
 }
 
-export default connect(state => state)(Main);
+export default connect((state: State) => ({ counter: state.counter }))(Main);
