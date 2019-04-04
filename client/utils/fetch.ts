@@ -1,10 +1,11 @@
 import axios from 'axios';
 import qs from 'querystring';
 import { isNode } from '../../utils/env';
+import logger from '../../utils/logger';
 
 interface Iprops {
   url: string;
-  body: object;
+  body: any;
   method?: string;
   opts?: any;
 }
@@ -43,6 +44,9 @@ export default ({ url, body, method = 'post', opts = {} }: Iprops) => {
   return baseRequest[method](url, body)
     .then(checkStatus)
     .catch(error => {
+      if (isNode) {
+        logger.error(error.response);
+      }
       throw error.response;
     });
 };

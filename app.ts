@@ -1,5 +1,4 @@
 import * as Koa from 'koa';
-import * as log4js from 'koa-log4';
 import * as session from 'koa-session';
 import * as CSRF from 'koa-csrf';
 import * as Next from 'next';
@@ -24,13 +23,10 @@ if (config.next) {
   }));
 }
 
-log4js.configure(config.log4);
-
 app.keys = config.keys;
 
 app.use(session(app));
 app.use(new CSRF());
-app.use(log4js.koaLogger(log4js.getLogger('http')));
 app.use(logger());
 app.use(router.routes());
 

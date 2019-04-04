@@ -2,11 +2,11 @@ import defaultConfig from './config.default';
 import localConfig from './config.local';
 import prodConfig from './config.prod';
 import testConfig from './config.unittest';
+import * as next from 'next';
 
 export interface IConfig {
   keys: string[];
-  log4: object;
-  next?: object;
+  next?: next.ServerOptions;
 }
 
 const env = process.env.NODE_ENV;

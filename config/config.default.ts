@@ -6,38 +6,6 @@ if (typeof require !== 'undefined') {
 
 const config = {
   keys: ['123456'],
-  log4: {
-    appenders: {
-      console: {
-        type: 'console'
-      },
-      http: {
-        type: 'dateFile',
-        filename: 'logs/access.log',
-        pattern: '-yyyy-MM-dd',
-        compress: true
-      },
-      emergencies: {
-        type: 'file',
-        filename: 'logs/errors.log'
-      },
-      error: {
-        type: 'logLevelFilter',
-        level: 'ERROR',
-        appender: 'emergencies'
-      }
-    },
-    categories: {
-      console: {
-        appenders: ['console'],
-        level: 'debug'
-      },
-      default: {
-        appenders: ['http', 'error'],
-        level: 'info'
-      }
-    }
-  }
 };
 
 export default config;

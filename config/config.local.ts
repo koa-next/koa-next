@@ -7,6 +7,9 @@ const conf = withTypescript({
   webpack(config, options) {
     const { dev, isServer } = options;
 
+    // only build in node
+    config.externals.push('log4js');
+
     if (!dev) {
       const originalEntry = config.entry;
       config.entry = async () => {
