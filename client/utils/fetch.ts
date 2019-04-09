@@ -1,16 +1,26 @@
-import axios from 'axios';
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+  AxiosInstance,
+} from 'axios';
 import qs from 'querystring';
 import { isNode } from '../../utils/env';
 import logger from '../../utils/logger';
 
 interface Iprops {
-  url: string;
-  body: any;
-  method?: string;
-  opts?: any;
+  body: {
+    string: any;
+  };
 }
 
-const checkStatus = res => {
+export interface Response {
+  success: boolean;
+  errorMsg?: string;
+  result?: any;
+}
+
+const checkStatus = (res: AxiosResponse) => {
   const { status } = res;
 
   if (status >= 200 && status < 300) {
@@ -20,15 +30,22 @@ const checkStatus = res => {
   return Promise.reject(res);
 };
 
-export default ({ url, body, method = 'post', opts = {} }: Iprops) => {
+export default (
+  url: string,
+  { body, method = 'post', ...opts }: AxiosRequestConfig & Iprops
+): never | Promise<Response> => {
   const { headers: h } = opts;
   const headers = {
     'content-type': 'application/json; charset=utf-8',
-    'X-Requested-With': 'XMLHttpRequest',
-    'csrf-token': isNode ? h && h['csrf'] : window.csrf,
+    'csrf-token': isNode ? h && h['csrf'] : window.csrf
   };
 
-  const baseRequest = axios.create({headers});
+  const config: AxiosRequestConfig = {
+    ...headers,
+    ...opts
+  };
+
+  const baseRequest: AxiosInstance = axios.create(config);
 
   if (
     method === 'get' ||
@@ -43,7 +60,7 @@ export default ({ url, body, method = 'post', opts = {} }: Iprops) => {
 
   return baseRequest[method](url, body)
     .then(checkStatus)
-    .catch(error => {
+    .catch((error: AxiosError) => {
       if (isNode) {
         logger.error(error.response);
       }

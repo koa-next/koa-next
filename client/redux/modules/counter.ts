@@ -49,8 +49,7 @@ export const reducers = {
 const searchCounterEpics = createEpics(
   FETCH_COUNTER,
   payload =>
-    fetch({
-      url: '/test',
+    fetch('/test', {
       body: payload
     }),
   x => searchCounterSuccess(x.result),
