@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { createAction, handleActions } from 'redux-actions';
-import { createEpics } from '../../utils/observable';
+import { createEpics, createObserverable } from '../../utils/observable';
 import fetch from '../../utils/fetch';
 import { isNode } from '../../../utils/env';
 import logger from '../../../utils/logger';
@@ -57,3 +57,11 @@ const searchCounterEpics = createEpics(
 );
 
 export const epics = [searchCounterEpics];
+
+export const fetchCounterController = (data = {}) => {
+  return createObserverable(
+    fetch('/test', {
+      body: data
+    })
+  ).toPromise();
+};

@@ -1,11 +1,12 @@
 import React from 'react';
 import Router from 'next/router';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State } from '../../redux/modules';
 import {
   searchCounter,
+  fetchCounterController,
   State as counterState
 } from '../../redux/modules/counter';
 import styles from './style.scss';
@@ -25,7 +26,13 @@ class Main extends React.Component<MainProps, any> {
   }
 
   decrement = () => {
-    this.props.dispatch(searchCounter());
+    fetchCounterController().then((res: any) => {
+      if (res.success) {
+        console.log(res.result);
+        return;
+      }
+      message.error(res.errorMsg || '接口错误');
+    });
   }
 
   gotoPageA = () => {

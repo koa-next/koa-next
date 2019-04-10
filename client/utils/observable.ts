@@ -71,4 +71,12 @@ const createEpics = (
     })
   );
 
-export { createEpics };
+const createObserverable = (promise, globalError = GlobalError) => {
+  return from(promise).pipe(
+    catchError(err => {
+      return of(globalError(err));
+    })
+  );
+};
+
+export { createEpics, createObserverable };

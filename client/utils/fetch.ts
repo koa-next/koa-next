@@ -10,7 +10,7 @@ import logger from '../../utils/logger';
 
 interface Iprops {
   body: {
-    string: any;
+    string?: any;
   };
 }
 
