@@ -1,5 +1,4 @@
-import { isPro } from './env';
-import * as log4js from 'log4js';
+import { isNode, isPro } from './env';
 
 const config = {
   appenders: {
@@ -29,7 +28,12 @@ const config = {
   }
 };
 
-const logger = log4js.getLogger();
-log4js.configure(config);
+let logger;
+
+if (isNode) {
+  const log4js = require('log4js');
+  log4js.configure(config);
+  logger = log4js.getLogger();
+}
 
 export default logger;

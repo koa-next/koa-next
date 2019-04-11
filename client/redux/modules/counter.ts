@@ -1,9 +1,9 @@
 import { message } from 'antd';
 import { createAction, handleActions } from 'redux-actions';
 import { createEpics, createObserverable } from '../../utils/observable';
-import fetch from '../../../utils/fetch';
-import { isNode } from '../../../utils/env';
-import logger from '../../../utils/logger';
+import fetch from '../../utils/fetch';
+import { isNode } from '../../utils/env';
+import logger from '../../utils/logger';
 
 export interface State {
   num: number;

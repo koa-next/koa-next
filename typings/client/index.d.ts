@@ -5,4 +5,5 @@ declare module '*.scss' {
 
 interface Window {
   devToolsExtension?: any;
+  csrf: string;
 }

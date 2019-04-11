@@ -32,9 +32,9 @@
     "app.ts",
     "server.ts",
     "next.config.ts",
-    "app/**/*",
-    "config/**/*",
-    "test/**/*",
-    "utils/**/*"
+    "app/**/*.ts",
+    "config/**/*.ts",
+    "test/**/*.ts",
+    "utils/**/*.ts"
   ]
 }
