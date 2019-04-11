@@ -2,11 +2,11 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosError,
-  AxiosInstance,
+  AxiosInstance
 } from 'axios';
-import qs from 'querystring';
-import { isNode } from '../../utils/env';
-import logger from '../../utils/logger';
+import * as qs from 'querystring';
+import { isNode } from './env';
+import logger from './logger';
 
 interface Iprops {
   body: {
@@ -67,4 +67,3 @@ export default (
       throw error.response;
     });
 };
-
