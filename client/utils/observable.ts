@@ -24,8 +24,8 @@
 import { ofType } from 'redux-observable';
 import { of, from, merge } from 'rxjs';
 import { partition, map, catchError, mergeMap } from 'rxjs/operators';
-import { isNode } from '../../utils/env';
-import logger from '../../utils/logger';
+import { isNode } from './env';
+import logger from './logger';
 
 const GlobalError = (res) => {
   if (isNode) {
