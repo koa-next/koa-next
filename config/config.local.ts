@@ -129,6 +129,31 @@ const conf = withTypescript({
       })
     );
 
+    config.module.rules.push({
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name: '[hash].[ext]',
+          outputPath: 'static/img/',
+          publicPath: '../img/',
+        },
+      }],
+    });
+
+    config.module.rules.push({
+      test: /\.(eot|ttf|woff|woff2|otf|ttc)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+          outputPath: 'static/fonts/',
+          publicPath: '../fonts/',
+        },
+      }],
+    });
+
     return config;
   },
 });
