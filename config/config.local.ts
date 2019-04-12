@@ -83,6 +83,7 @@ const conf = withTypescript({
     };
 
     const sassLoader = { loader: 'sass-loader' };
+    const postcssLoader = { loader: 'postcss-loader' };
 
     const loaders = isServer
       ? [cssLoader, sassLoader]
@@ -98,7 +99,8 @@ const conf = withTypescript({
             import: false,
           },
         },
-        'sass-loader',
+        sassLoader,
+        postcssLoader
       ].filter(Boolean);
 
     options.defaultLoaders.sass = loaders;
