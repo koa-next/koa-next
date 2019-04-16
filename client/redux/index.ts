@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
-import { isPro, isNode } from '../../utils/env';
+import { isPro, isNode } from '../utils/env';
 import { rootEpics, rootReducers } from './modules';
 
 const epicMiddleware = createEpicMiddleware();

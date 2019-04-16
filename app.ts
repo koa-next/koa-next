@@ -7,10 +7,10 @@ import NextMiddleware from 'koa-next-middleware';
 import config from './config';
 import router from './app/router';
 import logger from './app/middleware/logger';
-import { isPro } from './utils/env';
 
 const app = new Koa();
 
+const isPro = process.env.NODE_ENV === 'production';
 const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60 // 1hour
