@@ -10,7 +10,7 @@ import logger from './app/middleware/logger';
 
 const app = new Koa();
 
-const isPro = process.env.NODE_ENV === 'production';
+const isPro = process.env.NODE_ENV === 'prod';
 const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60 // 1hour

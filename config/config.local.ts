@@ -124,13 +124,6 @@ const conf = withTypescript({
       })
     );
 
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env.NEXT_ENV': JSON.stringify(process.env.NEXT_ENV),
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      })
-    );
-
     config.module.rules.push({
       test: /\.(png|jpg|gif)$/,
       use: [{
