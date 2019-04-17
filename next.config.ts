@@ -1,7 +1,6 @@
 import * as withTypescript from '@zeit/next-typescript';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as path from 'path';
-import * as webpack from 'webpack';
 
 const conf = withTypescript({
   webpack(config, options) {
