@@ -123,7 +123,7 @@ const conf = withTypescript({
     );
 
     config.module.rules.push({
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpg|gif|svg)$/,
       use: [{
         loader: 'url-loader',
         options: {
