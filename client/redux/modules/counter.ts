@@ -49,7 +49,7 @@ export const reducers = {
 const searchCounterEpics = createEpics(
   FETCH_COUNTER,
   payload =>
-    fetch('/test', {
+    fetch('/api/test', {
       body: payload
     }),
   x => searchCounterSuccess(x.result),
@@ -60,7 +60,7 @@ export const epics = [searchCounterEpics];
 
 export const fetchCounterController = (data = {}) => {
   return createObserverable(
-    fetch('/test', {
+    fetch('/api/test', {
       body: data
     })
   ).toPromise();

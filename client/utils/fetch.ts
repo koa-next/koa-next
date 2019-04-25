@@ -5,6 +5,7 @@ import axios, {
   AxiosInstance
 } from 'axios';
 import * as qs from 'querystring';
+import getConfig from 'next/config';
 import { isNode } from './env';
 import logger from './logger';
 
@@ -19,6 +20,8 @@ export interface Response {
   errorMsg?: string;
   result?: any;
 }
+
+const { publicRuntimeConfig } = getConfig();
 
 const checkStatus = (res: AxiosResponse) => {
   const { status } = res;
@@ -35,17 +38,23 @@ export default (
   { body, method = 'post', ...opts }: AxiosRequestConfig & Iprops
 ): never | Promise<Response> => {
   const { headers: h } = opts;
+  const { store } = require('../redux');
   const headers = {
     'content-type': 'application/json; charset=utf-8',
-    'csrf-token': isNode ? h && h['csrf'] : window.csrf
+    'csrf-token': store && store.getState().common.csrf,
+    ...h
   };
 
   const config: AxiosRequestConfig = {
-    ...headers,
-    ...opts
+    ...opts,
+    headers
   };
 
   const baseRequest: AxiosInstance = axios.create(config);
+
+  if (isNode) {
+    url = `${publicRuntimeConfig.api}${url}`;
+  }
 
   if (
     method === 'get' ||

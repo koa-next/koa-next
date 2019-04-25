@@ -7,6 +7,16 @@ class HomeController {
     ctx.status = 200;
     ctx.body = await service.home.sayHi('koa-next');
   }
+
+  public static async test(ctx: Context) {
+    ctx.status = 200;
+    ctx.body = {
+      success: true,
+      result: {
+        num: 5
+      }
+    };
+  }
 }
 
 export default HomeController;

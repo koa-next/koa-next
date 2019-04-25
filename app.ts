@@ -26,7 +26,13 @@ if (config.next) {
 app.keys = config.keys;
 
 app.use(session(app));
-app.use(new CSRF());
+app.use(
+  isPro ?
+  new CSRF() :
+  new CSRF({
+    excludedMethods: ['POST', 'GET', 'HEAD', 'OPTIONS'],
+  })
+);
 app.use(logger());
 app.use(router.routes());
 

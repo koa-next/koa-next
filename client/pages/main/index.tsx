@@ -9,6 +9,9 @@ import {
   fetchCounterController,
   State as counterState
 } from '../../redux/modules/counter';
+import {
+  fetchCommon
+} from '../../redux/modules/common';
 import styles from './style.scss';
 
 interface MainProps {
@@ -17,6 +20,14 @@ interface MainProps {
 }
 
 class Main extends React.Component<MainProps, any> {
+  static async getInitialProps({ store, req }) {
+    if (store && req.headers.csrf) {
+      store.dispatch(fetchCommon({
+        csrf: req.headers.csrf
+      }));
+    }
+  }
+
   componentDidMount() {
     console.log(this.props);
   }

@@ -29,12 +29,12 @@ import logger from './logger';
 
 const GlobalError = (res) => {
   if (isNode) {
-    logger.error(`globalError: ${JSON.stringify(res)}`);
+    logger.error(`globalError: ${res && res.statusText}`);
   }
 
   return {
     success: false,
-    errorMsg: res.statusText
+    errorMsg: res && res.statusText
   };
 };
 

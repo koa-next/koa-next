@@ -158,6 +158,9 @@ export default {
     dev: true,
     conf: {
       pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
+      publicRuntimeConfig: {
+        api: 'http://127.0.0.1:3000'
+      },
       ...conf
     }
   }
