@@ -38,10 +38,8 @@ export default (
   { body, method = 'post', ...opts }: AxiosRequestConfig & Iprops
 ): never | Promise<Response> => {
   const { headers: h } = opts;
-  const { store } = require('../redux');
   const headers = {
     'content-type': 'application/json; charset=utf-8',
-    'csrf-token': store && store.getState().common.csrf,
     ...h
   };
 
