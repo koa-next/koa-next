@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { State } from '../../redux/modules';
 import {
   searchCounter,
+  searchCounterSuccess,
+  searchCounterFail,
   fetchCounterController,
   State as counterState
 } from '../../redux/modules/counter';
@@ -17,6 +19,14 @@ interface MainProps {
 }
 
 class Main extends React.Component<MainProps, any> {
+  static async getInitialProps({ store }) {
+    const res: any = await fetchCounterController({});
+    if (res.success) {
+      store.dispatch(searchCounterSuccess(res.result));
+      return;
+    }
+    store.dispatch(searchCounterFail(res));
+  }
   componentDidMount() {
     console.log(this.props);
   }
