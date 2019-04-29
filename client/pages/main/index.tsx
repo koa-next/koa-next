@@ -1,13 +1,12 @@
 import React from 'react';
 import Router from 'next/router';
 import { Button, message } from 'antd';
+import { of } from 'rxjs';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State } from '../../redux/modules';
+import { State, rootEpics } from '../../redux/modules';
 import {
   searchCounter,
-  searchCounterSuccess,
-  searchCounterFail,
   fetchCounterController,
   State as counterState
 } from '../../redux/modules/counter';
@@ -20,13 +19,12 @@ interface MainProps {
 
 class Main extends React.Component<MainProps, any> {
   static async getInitialProps({ store }) {
-    const res: any = await fetchCounterController({});
-    if (res.success) {
-      store.dispatch(searchCounterSuccess(res.result));
-      return;
-    }
-    store.dispatch(searchCounterFail(res));
+    const resultAction = await rootEpics(
+      of(searchCounter())
+    ).toPromise();
+    store.dispatch(resultAction);
   }
+
   componentDidMount() {
     console.log(this.props);
   }

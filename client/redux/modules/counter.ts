@@ -19,8 +19,8 @@ const FETCH_COUNTER_FAIL = Symbol('FETCH_COUNTER_FAIL');
 const FETCH_COUNTER_SUCCESS = Symbol('FETCH_COUNTER_SUCCESS');
 
 // actions
-export const searchCounterFail = createAction(FETCH_COUNTER_FAIL);
-export const searchCounterSuccess = createAction(FETCH_COUNTER_SUCCESS);
+const searchCounterFail = createAction(FETCH_COUNTER_FAIL);
+const searchCounterSuccess = createAction(FETCH_COUNTER_SUCCESS);
 export const searchCounter = createAction(FETCH_COUNTER);
 
 // reducers
