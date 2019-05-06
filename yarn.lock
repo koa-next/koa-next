@@ -767,6 +767,12 @@
     "@types/koa-compose" "*"
     "@types/node" "*"
 
+"@types/log4js@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.npm.taobao.org/@types/log4js/download/@types/log4js-2.3.5.tgz#4d1e56da53d3c1820c08e9cd5092e68c3e1e822f"
+  dependencies:
+    log4js "*"
+
 "@types/mime@*":
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/@types/mime/download/@types/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
@@ -4647,9 +4653,9 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-next-middleware@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/koa-next-middleware/download/koa-next-middleware-1.0.2.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Fkoa-next-middleware%2Fdownload%2Fkoa-next-middleware-1.0.2.tgz#56363b963f7899abce5219151c8c3ab85c916e91"
+koa-next-middleware@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/koa-next-middleware/download/koa-next-middleware-1.0.3.tgz#2991b18d5f7d3e50564af2cecbeec8c675b13233"
   dependencies:
     koa "^2.7.0"
     typescript "^3.3.1"
@@ -4854,7 +4860,7 @@ log-update@^2.3.0:
     cli-cursor "^2.0.0"
     wrap-ansi "^3.0.1"
 
-log4js@^4.1.0:
+log4js@*, log4js@^4.1.0:
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/log4js/download/log4js-4.1.0.tgz#57983c6a443546a8c8607e9cb045d2a117c27644"
   dependencies:

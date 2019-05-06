@@ -1,6 +1,7 @@
 import { isNode, isPro } from './env';
+import { Configuration } from 'log4js';
 
-const config = {
+const config: Configuration = {
   appenders: {
     koaNextAccess: {
       type: isPro ? 'dateFile' : 'console',
