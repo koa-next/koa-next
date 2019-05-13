@@ -49,7 +49,7 @@ const createEpics = (
     ofType(actionType),
     mergeMap((action: any) => {
       const [succ$, err$] = partition((x: any) => x.success)(
-        from(createPromise(action.payload)).pipe(
+        from(createPromise(action.payload, action.meta)).pipe(
           catchError(err => {
             return of(globalError(err));
           })

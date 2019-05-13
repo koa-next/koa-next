@@ -30,7 +30,11 @@ class Main extends React.Component<MainProps, any> {
   }
 
   increment = () => {
-    this.props.dispatch(searchCounter());
+    this.props.dispatch(searchCounter({}, {
+      headers: {
+        requestId: 1
+      }
+    }));
   }
 
   decrement = () => {
