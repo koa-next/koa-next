@@ -130,8 +130,8 @@ const conf = withTypescript({
         options: {
           limit: 8192,
           name: '[hash].[ext]',
-          outputPath: 'static/img/',
-          publicPath: '../img/',
+          publicPath: `${options.config.assetPrefix}/_next/static/images/`,
+          outputPath: `${isServer ? '../' : ''}static/images/`,
         },
       }],
     });
@@ -142,8 +142,8 @@ const conf = withTypescript({
         loader: 'file-loader',
         options: {
           name: '[name].[hash].[ext]',
-          outputPath: 'static/fonts/',
-          publicPath: '../fonts/',
+          publicPath: `${options.config.assetPrefix}/_next/static/fonts/`,
+          outputPath: `${isServer ? '../' : ''}static/fonts/`,
         },
       }],
     });
@@ -159,9 +159,10 @@ export default {
     conf: {
       pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
       publicRuntimeConfig: {
-        api: 'http://127.0.0.1:3000'
+        api: 'http://127.0.0.1:3000',
       },
-      ...conf
-    }
-  }
+      assetPrefix: 'http://127.0.0.1:3000',
+      ...conf,
+    },
+  },
 };

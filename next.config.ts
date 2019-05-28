@@ -1,6 +1,7 @@
 import * as withTypescript from '@zeit/next-typescript';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as path from 'path';
+import c from './config';
 
 const conf = withTypescript({
   webpack(config, options) {
@@ -129,8 +130,8 @@ const conf = withTypescript({
         options: {
           limit: 8192,
           name: '[hash].[ext]',
-          outputPath: 'static/img/',
-          publicPath: '../img/',
+          publicPath: `${options.config.assetPrefix}/_next/static/images/`,
+          outputPath: `${isServer ? '../' : ''}static/images/`,
         },
       }],
     });
@@ -141,8 +142,8 @@ const conf = withTypescript({
         loader: 'file-loader',
         options: {
           name: '[name].[hash].[ext]',
-          outputPath: 'static/fonts/',
-          publicPath: '../fonts/',
+          publicPath: `${options.config.assetPrefix}/_next/static/fonts/`,
+          outputPath: `${isServer ? '../' : ''}static/fonts/`,
         },
       }],
     });
@@ -153,5 +154,6 @@ const conf = withTypescript({
 
 module.exports = {
   pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
-  ...conf
+  ...c.next.conf,
+  ...conf,
 };
