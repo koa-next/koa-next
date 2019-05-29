@@ -1,6 +1,9 @@
 FROM ubuntu:xenial
 MAINTAINER PLDaily "pcd12321@gmail.com"
 
+ENV NEXT_ENV prod
+ENV NODE_ENV production
+
 RUN apt-get -y update
 
 RUN mkdir -p /data
