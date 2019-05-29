@@ -1,7 +1,7 @@
 import { Context } from 'koa';
 import * as log4js from 'log4js';
 
-const isPro = process.env.NODE_ENV === 'prod';
+const isPro = process.env.NODE_ENV === 'production';
 
 const config = {
   appenders: {

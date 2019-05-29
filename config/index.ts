@@ -1,6 +1,7 @@
 import defaultConfig from './config.default';
 import localConfig from './config.local';
 import prodConfig from './config.prod';
+import preConfig from './config.pre';
 import testConfig from './config.unittest';
 import * as next from 'next';
 
@@ -9,13 +10,20 @@ export interface IConfig {
   next?: next.ServerOptions;
 }
 
-const env = process.env.NODE_ENV;
+const env = process.env.NEXT_ENV;
 
 const getConfig = () => {
   if (env && env === 'prod') {
     return {
       ...defaultConfig,
       ...prodConfig,
+    };
+  }
+
+  if (env && env === 'pre') {
+    return {
+      ...defaultConfig,
+      ...preConfig,
     };
   }
 

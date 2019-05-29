@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 'lts/*'
+env:
+  - NEXT_ENV=test
+  - NODE_ENV=test
 branches:
   only:
     - master

@@ -4,14 +4,14 @@
   "description": "A FrameWork Based On Koa.js And Next.js",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit",
+    "test": "NEXT_ENV=test jest --forceExit",
     "tslint": "tslint -c tslint.json -p tsconfig.koa.json && tslint -c tslint.json -p tsconfig.json",
     "tsc": "tsc -p tsconfig.koa.json",
     "build": "npm run tsc && npm run next-build",
     "next-build": "next build client",
     "next-dev": "next dev client",
     "dev": "nodemon --config nodemon.json",
-    "start": "cross-env NODE_ENV=prod node server.js",
+    "start": "node server.js",
     "clean": "ts-clean"
   },
   "author": " <PLDaily pcd12321@gmail.com>",
