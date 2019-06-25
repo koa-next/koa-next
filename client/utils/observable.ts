@@ -21,13 +21,15 @@
  *
  */
 
+import { message } from 'antd';
 import { ofType } from 'redux-observable';
 import { of, from, merge } from 'rxjs';
-import { partition, map, catchError, mergeMap } from 'rxjs/operators';
+import { partition, map, catchError, mergeMap, tap } from 'rxjs/operators';
 import { isNode } from './env';
 import logger from './logger';
 
-const GlobalError = (res) => {
+// http 非 200 错误处理
+const globalError = (res) => {
   if (isNode) {
     logger.error(`globalError: ${res && res.statusText}`);
   }
@@ -38,12 +40,22 @@ const GlobalError = (res) => {
   };
 };
 
+// http 200 success false 错误处理
+const requestError = (res) => {
+  const errorMsg = res.errorMsg || '接口错误'
+  if (isNode) {
+    logger.error(`${errorMsg}`);
+  } else {
+    message.error(errorMsg);
+  }
+}
+
 const createEpics = (
   actionType,
   createPromise,
   successAction,
   errorAction,
-  globalError = GlobalError
+  globalErr = globalError
 ) => (action$: any) =>
   action$.pipe(
     ofType(actionType),
@@ -51,30 +63,27 @@ const createEpics = (
       const [succ$, err$] = partition((x: any) => x.success)(
         from(createPromise(action.payload, action.meta)).pipe(
           catchError(err => {
-            return of(globalError(err));
+            return of(globalErr(err));
           })
         )
       );
 
       return merge(
         succ$.pipe(
-          map(x => {
-            return successAction(x);
-          })
+          map(x => successAction(x))
         ),
         err$.pipe(
-          map(x => {
-            return errorAction(x);
-          })
+          tap(x => requestError(x)),
+          map(x => errorAction(x))
         )
       );
     })
   );
 
-const createObserverable = (promise, globalError = GlobalError) => {
+const createObserverable = (promise, globalErr = globalError) => {
   return from(promise).pipe(
     catchError(err => {
-      return of(globalError(err));
+      return of(globalErr(err));
     })
   );
 };

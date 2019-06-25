@@ -1,8 +1,6 @@
-import { message } from 'antd';
 import { createAction, handleActions } from 'redux-actions';
 import { createEpics, createObserverable } from '../../utils/observable';
 import fetch from '../../utils/fetch';
-import { isNode } from '../../utils/env';
 import logger from '../../utils/logger';
 
 export interface State {
@@ -33,12 +31,7 @@ const counter = handleActions(
     [FETCH_COUNTER_SUCCESS]: (state, { payload }) => {
       return { ...state, ...payload };
     },
-    [FETCH_COUNTER_FAIL]: (state, { payload }) => {
-      if (isNode) {
-        logger.error(`interface error: ${JSON.stringify(payload)}`);
-      } else {
-        message.error(payload.errorMsg || '接口错误');
-      }
+    [FETCH_COUNTER_FAIL]: (state) => {
       return { ...state };
     }
   },
