@@ -1,7 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { createEpics, createObserverable } from '../../utils/observable';
 import fetch from '../../utils/fetch';
-import logger from '../../utils/logger';
 
 export interface State {
   num: number;

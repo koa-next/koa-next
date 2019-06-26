@@ -42,13 +42,13 @@ const globalError = (res) => {
 
 // http 200 success false 错误处理
 const requestError = (res) => {
-  const errorMsg = res.errorMsg || '接口错误'
+  const errorMsg = res.errorMsg || '接口错误';
   if (isNode) {
     logger.error(`${errorMsg}`);
   } else {
     message.error(errorMsg);
   }
-}
+};
 
 const createEpics = (
   actionType,
