@@ -6,20 +6,28 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, rootEpics } from '../../redux/modules';
 import {
+  State as commonState,
+} from '../../redux/modules/common';
+import {
   searchCounter,
   fetchCounterController,
-  State as counterState
+  State as counterState,
 } from '../../redux/modules/counter';
 import styles from './style.scss';
 
 interface MainProps {
+  common: commonState;
   counter: counterState;
   dispatch: Dispatch;
 }
 
 const Main = (props: MainProps) => {
+  const { common, counter, dispatch } = props;
+  const { __ } = common;
+  const { num } = counter;
+
   const increment = () => {
-    props.dispatch(searchCounter({}, {
+    dispatch(searchCounter({}, {
       headers: {
         requestId: 1
       }
@@ -47,8 +55,9 @@ const Main = (props: MainProps) => {
   return (
     <div className={styles.main}>
       <p>hello, koa-next</p>
+      <h3>多语言测试: {__.main.text}</h3>
       <div className={styles.example}>
-        <span>{props.counter.num}</span>
+        <span>{num}</span>
         <div className={styles.btn}>
           <Button onClick={increment}>+</Button>
           <Button onClick={decrement}>-</Button>
@@ -67,4 +76,7 @@ Main.getInitialProps = async ({ store }) => {
   store.dispatch(resultAction);
 };
 
-export default connect((state: State) => ({ counter: state.counter }))(Main);
+export default connect((state: State) => ({
+  common: state.common,
+  counter: state.counter,
+}))(Main);

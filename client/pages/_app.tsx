@@ -3,16 +3,24 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import App, { Container } from 'next/app';
 import configureStore from '../redux';
+import { setLocales } from '../redux/modules/common';
+import { getLocales } from '../utils/locale';
 import 'normalize.css/normalize.css';
 import '../styles/layout.scss';
 
+// from cookie
+const PLATLANG = 'zh';
+
 class MyApp extends App<any> {
   static async getInitialProps({ Component, ctx }) {
+    const { store } = ctx;
     let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
+
+    store.dispatch(setLocales(getLocales(PLATLANG)));
 
     return { pageProps };
   }
