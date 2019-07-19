@@ -17,27 +17,16 @@ interface MainProps {
   dispatch: Dispatch;
 }
 
-class Main extends React.Component<MainProps, any> {
-  static async getInitialProps({ store }) {
-    const resultAction = await rootEpics(
-      of(searchCounter())
-    ).toPromise();
-    store.dispatch(resultAction);
-  }
-
-  componentDidMount() {
-    console.log(this.props);
-  }
-
-  increment = () => {
-    this.props.dispatch(searchCounter({}, {
+const Main = (props: MainProps) => {
+  const increment = () => {
+    props.dispatch(searchCounter({}, {
       headers: {
         requestId: 1
       }
     }));
-  }
+  };
 
-  decrement = () => {
+  const decrement = () => {
     fetchCounterController().then((res: any) => {
       if (res.success) {
         console.log(res.result);
@@ -45,33 +34,37 @@ class Main extends React.Component<MainProps, any> {
       }
       message.error(res.errorMsg || '接口错误');
     });
-  }
+  };
 
-  gotoPageA = () => {
+  const gotoPageA = () => {
     Router.push('/a');
-  }
+  };
 
-  gotoPageB = () => {
+  const gotoPageB = () => {
     Router.push('/b');
-  }
+  };
 
-  render() {
-    console.log(this.props);
-    return (
-      <div className={styles.main}>
-        <p>hello, koa-next</p>
-        <div className={styles.example}>
-          <span>{this.props.counter.num}</span>
-          <div className={styles.btn}>
-            <Button onClick={this.increment}>+</Button>
-            <Button onClick={this.decrement}>-</Button>
-          </div>
+  return (
+    <div className={styles.main}>
+      <p>hello, koa-next</p>
+      <div className={styles.example}>
+        <span>{props.counter.num}</span>
+        <div className={styles.btn}>
+          <Button onClick={increment}>+</Button>
+          <Button onClick={decrement}>-</Button>
         </div>
-        <Button onClick={this.gotoPageA}>跳转到 A 页面</Button>
-        <Button onClick={this.gotoPageB}>跳转到 B 页面</Button>
       </div>
-    );
-  }
-}
+      <Button onClick={gotoPageA}>跳转到 A 页面</Button>
+      <Button onClick={gotoPageB}>跳转到 B 页面</Button>
+    </div>
+  );
+};
+
+Main.getInitialProps = async ({ store }) => {
+  const resultAction = await rootEpics(
+    of(searchCounter())
+  ).toPromise();
+  store.dispatch(resultAction);
+};
 
 export default connect((state: State) => ({ counter: state.counter }))(Main);
