@@ -1,11 +1,15 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
-    "allowJs": true,
+    "baseUrl": "../",
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "moduleResolution": "node",
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -13,17 +17,22 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "typeRoots": [
-      "./node_modules/@types/",
-      "./typings/"
+      "../node_modules/@types/"
     ],
-    "lib": [
-      "dom",
-      "es2016"
-    ]
   },
   "include": [
-    "client/**/*"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

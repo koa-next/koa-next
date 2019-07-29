@@ -1,12 +1,36 @@
-import * as withTypescript from '@zeit/next-typescript';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as path from 'path';
 import c from './config';
 
-const conf = withTypescript({
-  webpack(config, options) {
+const conf = {
+  webpack: (config: any, options: any) => {
     const { dev, isServer } = options;
+
+    if (isServer) {
+      const antStyles = /antd\/.*?\/style\/css.*?/;
+      const origExternals = [...config.externals];
+      config.externals = [
+        (context, request, callback) => {
+          if (request.match(antStyles)) {
+            return callback();
+          }
+          if (typeof origExternals[0] === 'function') {
+            origExternals[0](context, request, callback);
+          } else {
+            callback();
+          }
+        },
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+      ];
+
+      config.module.rules.unshift({
+        test: antStyles,
+        use: 'null-loader',
+      });
+    }
+
     // only build in node
+    config.externals = config.externals || [];
     config.externals.push('log4js');
 
     if (!dev) {
@@ -150,7 +174,7 @@ const conf = withTypescript({
 
     return config;
   },
-});
+};
 
 module.exports = {
   pageExtensions: ['tsx', 'jsx', 'js', 'ts'],

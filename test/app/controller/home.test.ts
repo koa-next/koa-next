@@ -1,6 +1,6 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import app from '../../../app';
-import * as Validator from 'ajv';
+import Validator from 'ajv';
 
 const v = new Validator();
 

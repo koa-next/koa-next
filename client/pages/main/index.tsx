@@ -74,6 +74,7 @@ Main.getInitialProps = async ({ store }) => {
     of(searchCounter())
   ).toPromise();
   store.dispatch(resultAction);
+  return {};
 };
 
 export default connect((state: State) => ({

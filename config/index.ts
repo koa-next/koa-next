@@ -3,11 +3,11 @@ import localConfig from './config.local';
 import prodConfig from './config.prod';
 import preConfig from './config.pre';
 import testConfig from './config.unittest';
-import * as next from 'next';
+import { ServerConstructor } from 'next-server/dist/server/next-server';
 
 export interface IConfig {
   keys: string[];
-  next?: next.ServerOptions;
+  next?: ServerConstructor;
 }
 
 const env = process.env.NEXT_ENV;

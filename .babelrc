@@ -9,10 +9,10 @@
           ]
         },
         "useBuiltIns": "usage",
+        "corejs": 3,
         "loose": true
       }
-    }],
-    "@zeit/next-typescript/babel"
+    }]
   ],
   "plugins": [
     [

@@ -1,32 +1,13 @@
 {
+  "extends": "./client/tsconfig.json",
   "compilerOptions": {
-    "allowJs": false,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "charset": "utf8",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "inlineSourceMap": true,
     "module": "commonjs",
-    "moduleResolution": "node",
-    "noEmitOnError": false,
-    "noFallthroughCasesInSwitch": true,
+    "outDir": ".",
+    "target": "es2017",
+    "isolatedModules": false,
+    "noEmit": false,
     "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "pretty": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "target": "es2015",
-    "typeRoots": [
-      "./node_modules/@types/",
-      "./typings/"
-    ],
-    "lib": [
-      "dom",
-      "es2015"
-    ]
+    "esModuleInterop": true,
   },
   "include": [
     "app.ts",

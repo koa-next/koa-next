@@ -1,6 +1,6 @@
-import * as Koa from 'koa';
-import * as Next from 'next';
-import * as LRUCache from 'lru-cache';
+import Koa from 'koa';
+import Next from 'next';
+import LRUCache from 'lru-cache';
 import NextMiddleware from 'koa-next-middleware';
 import config from './config';
 import router from './app/router';
