@@ -184,7 +184,6 @@ export default {
       publicRuntimeConfig: {
         api: 'http://127.0.0.1:3000',
       },
-      assetPrefix: 'http://127.0.0.1:3000',
       ...conf,
     },
   },

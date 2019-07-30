@@ -35,7 +35,11 @@ const Main = (props: MainProps) => {
   };
 
   const decrement = () => {
-    fetchCounterController().then((res: any) => {
+    fetchCounterController({}, {
+      headers: {
+        requestId: 1
+      }
+    }).then((res: any) => {
       if (res.success) {
         console.log(res.result);
         return;

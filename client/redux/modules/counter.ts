@@ -54,10 +54,11 @@ const searchCounterEpics = createEpics(
 
 export const epics = [searchCounterEpics];
 
-export const fetchCounterController = (data = {}) => {
+export const fetchCounterController = (data = {}, meta = {}) => {
   return createObserverable(
     fetch('/api/test', {
-      body: data
+      body: data,
+      ...meta
     })
   ).toPromise();
 };
