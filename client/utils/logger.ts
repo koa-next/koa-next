@@ -24,7 +24,7 @@ const config: Configuration = {
   categories: {
     default: {
       appenders: ['koaNextAccess', 'koaNextError'],
-      level: isPro ? 'error' : 'info'
+      level: 'info'
     }
   }
 };
