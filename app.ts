@@ -2,16 +2,29 @@ import Koa from 'koa';
 import Next from 'next';
 import LRUCache from 'lru-cache';
 import NextMiddleware from 'koa-next-middleware';
+import onerror from 'koa-onerror';
 import config from './config';
 import router from './app/router';
 import logger from './app/middleware/logger';
 
 const app = new Koa();
 
+onerror(app, {
+  accepts() {
+    return 'json';
+  },
+  json(err, ctx) {
+    ctx.body = { success: false, errorMsg: err.message };
+    if (process.env.NODE_ENV !== 'production') {
+      ctx.body.errStack = err.stack;
+    }
+  },
+});
+
 const isPro = process.env.NODE_ENV === 'production';
 const ssrCache = new LRUCache({
   max: 100,
-  maxAge: 1000 * 60 * 60 // 1hour
+  maxAge: 1000 * 60 * 60, // 1hour
 });
 
 if (config.next) {

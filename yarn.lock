@@ -4854,6 +4854,14 @@ koa-next-middleware@^1.0.3:
     koa "^2.7.0"
     typescript "^3.3.1"
 
+koa-onerror@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/koa-onerror/download/koa-onerror-4.1.0.tgz#7949c7651941e67b11813bf1fad03c2d34470b1c"
+  integrity sha1-eUnHZRlB5nsRgTvx+tA8LTRHCxw=
+  dependencies:
+    escape-html "^1.0.3"
+    stream-wormhole "^1.1.0"
+
 koa-router@^7.4.0:
   version "7.4.0"
   resolved "http://registry.npm.taobao.org/koa-router/download/koa-router-7.4.0.tgz#aee1f7adc02d5cb31d7d67465c9eacc825e8c5e0"
@@ -7752,6 +7760,11 @@ stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/stream-shift/download/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
+stream-wormhole@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/stream-wormhole/download/stream-wormhole-1.1.0.tgz#300aff46ced553cfec642a05251885417693c33d"
+  integrity sha1-MAr/Rs7VU8/sZCoFJRiFQXaTwz0=
 
 streamroller@^1.0.6:
   version "1.0.6"
