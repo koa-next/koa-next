@@ -1,6 +1,7 @@
 FROM ubuntu:xenial
 MAINTAINER PLDaily "pcd12321@gmail.com"
 
+ENV PORT 3000
 ENV NEXT_ENV prod
 ENV NODE_ENV production
 
@@ -25,7 +26,7 @@ RUN apt-get -y install git
 RUN git clone https://github.com/koa-next/koa-next.git .
 
 # Install node_modules
-RUN yarn
+RUN yarn install --production=false
 
 # Build project
 RUN yarn build

@@ -12,6 +12,7 @@
     "next-dev": "next dev client",
     "dev": "nodemon --config nodemon.json",
     "start": "node server.js",
+    "docker": "sh .docker/build.sh && sh .docker/start.sh",
     "clean": "ts-clean"
   },
   "author": " <PLDaily pcd12321@gmail.com>",
