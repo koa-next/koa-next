@@ -5,6 +5,7 @@ import App, { Container } from 'next/app';
 import configureStore from '../redux';
 import { setLocales } from '../redux/modules/common';
 import { getLocales } from '../utils/locale';
+import logger from '../utils/logger';
 import 'normalize.css/normalize.css';
 import '../styles/layout.scss';
 
@@ -13,16 +14,20 @@ const PLATLANG = 'zh';
 
 class MyApp extends App<any> {
   static async getInitialProps({ Component, ctx }) {
-    const { store } = ctx;
-    let pageProps = {};
+    try {
+      const { store } = ctx;
+      let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+      if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps(ctx);
+      }
+
+      store.dispatch(setLocales(getLocales(PLATLANG)));
+
+      return { pageProps };
+    } catch (err) {
+      logger.error(err);
     }
-
-    store.dispatch(setLocales(getLocales(PLATLANG)));
-
-    return { pageProps };
   }
 
   render() {
