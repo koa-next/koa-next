@@ -29,14 +29,14 @@ import { isNode } from './env';
 import logger from './logger';
 
 // http 非 200 错误处理
-const globalError = (res) => {
+const globalError = (err) => {
   if (isNode) {
-    logger.error(`globalError: ${res && res.statusText}`);
+    logger.error(err);
   }
 
   return {
     success: false,
-    errorMsg: res && res.statusText
+    errorMsg: err && err.statusText
   };
 };
 
@@ -44,7 +44,7 @@ const globalError = (res) => {
 const requestError = (res) => {
   const errorMsg = res.errorMsg || '接口错误';
   if (isNode) {
-    logger.error(`${errorMsg}`);
+    logger.error(res);
   } else {
     message.error(errorMsg);
   }

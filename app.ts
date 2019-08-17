@@ -9,23 +9,25 @@ import logger from './app/middleware/logger';
 
 const app = new Koa();
 
+const isPro = process.env.NODE_ENV === 'production';
+
+const ssrCache = new LRUCache({
+  max: 100,
+  maxAge: 1000 * 60 * 60, // 1hour
+});
+
 onerror(app, {
   accepts() {
     return 'json';
   },
   json(err, ctx) {
     ctx.body = { success: false, errorMsg: err.message };
-    if (process.env.NODE_ENV !== 'production') {
+    if (!isPro) {
       ctx.body.errStack = err.stack;
     }
   },
 });
 
-const isPro = process.env.NODE_ENV === 'production';
-const ssrCache = new LRUCache({
-  max: 100,
-  maxAge: 1000 * 60 * 60, // 1hour
-});
 
 if (config.next) {
   const appnext = Next(config.next);

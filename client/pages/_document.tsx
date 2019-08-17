@@ -1,9 +1,14 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+import logger from '../utils/logger';
 
 class MyDocument extends Document<any> {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    try {
+      const initialProps = await Document.getInitialProps(ctx);
+      return { ...initialProps };
+    } catch (err) {
+      logger.error(err);
+    }
   }
 
   render() {

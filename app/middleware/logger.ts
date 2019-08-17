@@ -5,19 +5,19 @@ const isPro = process.env.NODE_ENV === 'production';
 
 const config = {
   appenders: {
-    koaNextAccess: {
+    koaAccess: {
       type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/access.log',
+      filename: 'logs/koa-access.log',
       pattern: '-yyyy-MM-dd',
       compress: true
     },
     error: {
       type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/error.log',
+      filename: 'logs/koa-error.log',
       pattern: '-yyyy-MM-dd',
       compress: true
     },
-    koaNextError: {
+    koaError: {
       type: 'logLevelFilter',
       level: 'ERROR',
       appender: 'error'
@@ -25,7 +25,7 @@ const config = {
   },
   categories: {
     default: {
-      appenders: ['koaNextAccess', 'koaNextError'],
+      appenders: ['koaAccess', 'koaError'],
       level: 'info'
     }
   }

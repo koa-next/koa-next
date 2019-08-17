@@ -3,19 +3,19 @@ import { Configuration } from 'log4js';
 
 const config: Configuration = {
   appenders: {
-    koaNextAccess: {
+    NextAccess: {
       type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/koa-next-access.log',
+      filename: 'logs/next-access.log',
       pattern: '-yyyy-MM-dd',
       compress: true
     },
     error: {
       type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/koa-next-error.log',
+      filename: 'logs/next-error.log',
       pattern: '-yyyy-MM-dd',
       compress: true
     },
-    koaNextError: {
+    NextError: {
       type: 'logLevelFilter',
       level: 'ERROR',
       appender: 'error'
@@ -23,7 +23,7 @@ const config: Configuration = {
   },
   categories: {
     default: {
-      appenders: ['koaNextAccess', 'koaNextError'],
+      appenders: ['NextAccess', 'NextError'],
       level: 'info'
     }
   }
