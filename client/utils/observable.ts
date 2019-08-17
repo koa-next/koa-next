@@ -27,9 +27,10 @@ import { of, from, merge } from 'rxjs';
 import { partition, map, catchError, mergeMap, tap } from 'rxjs/operators';
 import { isNode } from './env';
 import logger from './logger';
+import { Response } from './fetch';
 
 // http 非 200 错误处理
-const globalError = (err) => {
+const globalError = (err): Response => {
   if (isNode) {
     logger.error(err);
   }
@@ -80,7 +81,7 @@ const createEpics = (
     })
   );
 
-const createObserverable = (promise, globalErr = globalError) => {
+const createObserverable = (promise: Promise<Response>, globalErr = globalError) => {
   return from(promise).pipe(
     catchError(err => {
       return of(globalErr(err));

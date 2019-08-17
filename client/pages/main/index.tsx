@@ -39,7 +39,7 @@ const Main = (props: MainProps) => {
       headers: {
         requestId: 1
       }
-    }).then((res: any) => {
+    }).then((res) => {
       if (res.success) {
         console.log(res.result);
         return;
