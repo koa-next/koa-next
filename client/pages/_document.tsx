@@ -16,6 +16,16 @@ class MyDocument extends Document<any> {
       <html>
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
+          <style
+            id="holderStyle"
+            dangerouslySetInnerHTML={{
+              __html: `
+            *, *::before, *::after {
+              transition: none!important;
+            }
+            `
+            }}
+          />
         </Head>
         <body className="custom_class">
           <Main />

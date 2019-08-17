@@ -30,6 +30,14 @@ class MyApp extends App<any> {
     }
   }
 
+  componentDidMount() {
+    // fix ssr style onload flash
+    // https://github.com/ant-design/ant-design/issues/16037
+    window.addEventListener('load', () => {
+      document.getElementById('holderStyle').remove();
+    });
+  }
+
   render() {
     const { Component, pageProps, store } = this.props;
     return (
