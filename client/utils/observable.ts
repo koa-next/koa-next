@@ -24,7 +24,7 @@
 import { message } from 'antd';
 import { ofType } from 'redux-observable';
 import { of, from, merge } from 'rxjs';
-import { partition, map, catchError, mergeMap, tap } from 'rxjs/operators';
+import { partition, map, catchError, mergeMap, tap, share } from 'rxjs/operators';
 import { isNode } from './env';
 import logger from './logger';
 import { Response } from './fetch';
@@ -65,7 +65,8 @@ const createEpics = (
         from(createPromise(action.payload, action.meta)).pipe(
           catchError(err => {
             return of(globalErr(err));
-          })
+          }),
+          share()
         )
       );
 
