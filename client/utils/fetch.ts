@@ -21,6 +21,10 @@ export interface Response {
   result?: any;
 }
 
+const defaultConfig = {
+  timeout: 5000
+};
+
 const { publicRuntimeConfig } = getConfig();
 
 const checkStatus = (res: AxiosResponse) => {
@@ -44,6 +48,7 @@ export default (
   };
 
   const config: AxiosRequestConfig = {
+    ...defaultConfig,
     ...opts,
     headers
   };
@@ -52,6 +57,7 @@ export default (
 
   if (isNode) {
     url = `${publicRuntimeConfig.api}${url}`;
+    logger.info(url);
   }
 
   if (
@@ -68,9 +74,6 @@ export default (
   return baseRequest[method](url, body)
     .then(checkStatus)
     .catch((error: AxiosError) => {
-      if (isNode) {
-        logger.error(error.response);
-      }
-      throw error.response;
+      throw error;
     });
 };
