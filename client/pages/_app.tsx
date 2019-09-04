@@ -26,7 +26,7 @@ class MyApp extends App<any> {
 
       return { pageProps };
     } catch (err) {
-      logger.error(err);
+      logger.app.error(err);
     }
   }
 

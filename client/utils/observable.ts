@@ -32,7 +32,7 @@ import { Response } from './fetch';
 // http 非 200 错误处理
 const globalError = (err): Response => {
   if (isNode) {
-    logger.error(`${err.message}${JSON.stringify(err.config)}`);
+    logger.observable.error(`${err.message}${JSON.stringify(err.config)}`);
   }
 
   return {
@@ -45,7 +45,7 @@ const globalError = (err): Response => {
 const requestError = (res) => {
   const errorMsg = res.errorMsg || '接口错误';
   if (isNode) {
-    logger.error(errorMsg);
+    logger.observable.error(errorMsg);
   } else {
     message.error(errorMsg);
   }

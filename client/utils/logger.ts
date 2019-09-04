@@ -1,5 +1,12 @@
 import { isNode, isPro } from './env';
-import { Configuration } from 'log4js';
+import { Configuration, Logger } from 'log4js';
+
+interface Log {
+  fetch: Logger;
+  observable: Logger;
+  app: Logger;
+  document: Logger;
+}
 
 const config: Configuration = {
   appenders: {
@@ -29,12 +36,17 @@ const config: Configuration = {
   }
 };
 
-let logger;
+let logger: Log;
 
 if (isNode) {
   const log4js = require('log4js');
   log4js.configure(config);
-  logger = log4js.getLogger();
+  logger = {
+    fetch: log4js.getLogger('fetch'),
+    observable: log4js.getLogger('observable'),
+    app: log4js.getLogger('app'),
+    document: log4js.getLogger('document')
+  };
 }
 
 export default logger;

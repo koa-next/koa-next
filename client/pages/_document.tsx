@@ -7,7 +7,7 @@ class MyDocument extends Document<any> {
       const initialProps = await Document.getInitialProps(ctx);
       return { ...initialProps };
     } catch (err) {
-      logger.error(err);
+      logger.document.error(err);
     }
   }
 

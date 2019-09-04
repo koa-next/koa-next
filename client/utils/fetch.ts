@@ -57,7 +57,7 @@ export default (
 
   if (isNode) {
     url = `${publicRuntimeConfig.api}${url}`;
-    logger.info(url);
+    logger.fetch.info(url);
   }
 
   if (
