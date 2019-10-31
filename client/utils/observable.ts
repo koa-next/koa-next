@@ -24,7 +24,14 @@
 import { message } from 'antd';
 import { ofType } from 'redux-observable';
 import { of, from, merge } from 'rxjs';
-import { partition, map, catchError, mergeMap, tap, share } from 'rxjs/operators';
+import {
+  partition,
+  map,
+  catchError,
+  mergeMap,
+  tap,
+  share
+} from 'rxjs/operators';
 import { isNode } from './env';
 import logger from './logger';
 import { Response } from './fetch';
@@ -42,7 +49,7 @@ const globalError = (err): Response => {
 };
 
 // http 200 success false 错误处理
-const requestError = (res) => {
+const requestError = res => {
   const errorMsg = res.errorMsg || '接口错误';
   if (isNode) {
     logger.observable.error(errorMsg);
@@ -71,9 +78,7 @@ const createEpics = (
       );
 
       return merge(
-        succ$.pipe(
-          map(x => successAction(x))
-        ),
+        succ$.pipe(map(x => successAction(x))),
         err$.pipe(
           tap(x => requestError(x)),
           map(x => errorAction(x))
@@ -82,7 +87,10 @@ const createEpics = (
     })
   );
 
-const createObserverable = (promise: Promise<Response>, globalErr = globalError) => {
+const createObserverable = (
+  promise: Promise<Response>,
+  globalErr = globalError
+) => {
   return from(promise).pipe(
     catchError(err => {
       return of(globalErr(err));

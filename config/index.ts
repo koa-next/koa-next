@@ -3,6 +3,7 @@ import localConfig from './config.local';
 import prodConfig from './config.prod';
 import preConfig from './config.pre';
 import testConfig from './config.unittest';
+// tslint:disable-next-line: no-implicit-dependencies
 import { ServerConstructor } from 'next-server/dist/server/next-server';
 
 export interface IConfig {
@@ -16,27 +17,27 @@ const getConfig = () => {
   if (env && env === 'prod') {
     return {
       ...defaultConfig,
-      ...prodConfig,
+      ...prodConfig
     };
   }
 
   if (env && env === 'pre') {
     return {
       ...defaultConfig,
-      ...preConfig,
+      ...preConfig
     };
   }
 
   if (env && env === 'test') {
     return {
       ...defaultConfig,
-      ...testConfig,
+      ...testConfig
     };
   }
 
   return {
     ...defaultConfig,
-    ...localConfig,
+    ...localConfig
   };
 };
 

@@ -1,4 +1,3 @@
 export default {
-  text: '测试',
+  text: '测试'
 };
-

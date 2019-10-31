@@ -18,6 +18,7 @@ class MyDocument extends Document<any> {
           <style>{`body { margin: 0 } /* custom! */`}</style>
           <style
             id="holderStyle"
+            // tslint:disable-next-line: jsx-no-multiline-js
             dangerouslySetInnerHTML={{
               __html: `
             *, *::before, *::after {

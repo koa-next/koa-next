@@ -21,7 +21,7 @@ const searchCounterSuccess = createAction(FETCH_COUNTER_SUCCESS);
 export const searchCounter = createAction(
   FETCH_COUNTER,
   (payload = {}) => payload,
-  (_, meta = {}) => ({ ...meta})
+  (_, meta = {}) => ({ ...meta })
 );
 
 // reducers
@@ -30,7 +30,7 @@ const counter = handleActions(
     [FETCH_COUNTER_SUCCESS]: (state, { payload }) => {
       return { ...state, ...payload };
     },
-    [FETCH_COUNTER_FAIL]: (state) => {
+    [FETCH_COUNTER_FAIL]: state => {
       return { ...state };
     }
   },
@@ -44,10 +44,11 @@ export const reducers = {
 // epics
 const searchCounterEpics = createEpics(
   FETCH_COUNTER,
-  (payload = {}, meta = {}) => fetch('/api/test', {
-    body: payload,
-    ...meta
-  }),
+  (payload = {}, meta = {}) =>
+    fetch('/api/test', {
+      body: payload,
+      ...meta
+    }),
   x => searchCounterSuccess(x.result),
   x => searchCounterFail(x)
 );

@@ -13,13 +13,12 @@ const dataSchema = {
       properties: {
         msg: numberType
       },
-      required: ['num'],
+      required: ['num']
     },
-    success: booleanType,
+    success: booleanType
   },
-  required: ['result', 'success'],
+  required: ['result', 'success']
 };
-
 
 describe('test/app/controller/home.test.ts', () => {
   let server;
@@ -32,21 +31,17 @@ describe('test/app/controller/home.test.ts', () => {
     await server.close();
   });
 
-  test('should GET /', (done) => {
-    server
-      .get('/')
-      .expect(200, (_, result) => {
-        expect(result.text).toBe('hi, koa-next');
-        done();
-      });
+  test('should GET /', done => {
+    server.get('/').expect(200, (_, result) => {
+      expect(result.text).toBe('hi, koa-next');
+      done();
+    });
   });
 
-  test('should POST /api/test', (done) => {
-    server
-      .post('/api/test')
-      .expect(200, (_, result) => {
-        expect(v.validate(dataSchema, JSON.parse(result.text))).toBe(true);
-        done();
-      });
+  test('should POST /api/test', done => {
+    server.post('/api/test').expect(200, (_, result) => {
+      expect(v.validate(dataSchema, JSON.parse(result.text))).toBe(true);
+      done();
+    });
   });
 });

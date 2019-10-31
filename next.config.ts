@@ -20,12 +20,12 @@ const conf = {
             callback();
           }
         },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
       ];
 
       config.module.rules.unshift({
         test: antStyles,
-        use: 'null-loader',
+        use: 'null-loader'
       });
     }
 
@@ -38,7 +38,10 @@ const conf = {
       config.entry = async () => {
         const entries = await originalEntry();
 
-        if (entries['main.js'] && !entries['main.js'].includes('@babel/polyfill')) {
+        if (
+          entries['main.js'] &&
+          !entries['main.js'].includes('@babel/polyfill')
+        ) {
           entries['main.js'].unshift('@babel/polyfill');
         }
 
@@ -51,7 +54,7 @@ const conf = {
         name: 'styles',
         test: new RegExp(`\\.+(${['css', 'scss'].join('|')})$`),
         chunks: 'all',
-        enforce: true,
+        enforce: true
       };
     }
 
@@ -59,7 +62,7 @@ const conf = {
       test: /\.css$/,
       include: [
         path.resolve(__dirname, './client/styles'),
-        path.resolve(__dirname, './node_modules/'),
+        path.resolve(__dirname, './node_modules/')
       ],
       use: [
         dev && 'extracted-loader',
@@ -69,10 +72,10 @@ const conf = {
           options: {
             modules: false,
             url: true,
-            import: false,
-          },
-        },
-      ].filter(Boolean),
+            import: false
+          }
+        }
+      ].filter(Boolean)
     });
 
     config.module.rules.push({
@@ -85,11 +88,11 @@ const conf = {
           options: {
             modules: false,
             url: true,
-            import: false,
-          },
+            import: false
+          }
         },
-        'sass-loader',
-      ],
+        'sass-loader'
+      ]
     });
 
     const cssLoader = {
@@ -101,8 +104,8 @@ const conf = {
         camelCase: true,
         localIdentName: '[local]_[hash:base64:5]',
         importLoaders: 1,
-        namedExport: !isServer || undefined,
-      },
+        namedExport: !isServer || undefined
+      }
     };
 
     const sassLoader = { loader: 'sass-loader' };
@@ -111,29 +114,27 @@ const conf = {
     const loaders = isServer
       ? [cssLoader, sassLoader]
       : [
-        dev && 'extracted-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            localIdentName: '[local]_[hash:base64:5]',
-            url: true,
-            import: false,
+          dev && 'extracted-loader',
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:base64:5]',
+              url: true,
+              import: false
+            }
           },
-        },
-        sassLoader,
-        postcssLoader
-      ].filter(Boolean);
+          sassLoader,
+          postcssLoader
+        ].filter(Boolean);
 
     options.defaultLoaders.sass = loaders;
 
     config.module.rules.push({
       test: /\.(scss|sass)$/,
       use: options.defaultLoaders.sass,
-      include: [
-        path.resolve(__dirname, './client/pages'),
-      ],
+      include: [path.resolve(__dirname, './client/pages')]
     });
 
     config.plugins.push(
@@ -143,41 +144,45 @@ const conf = {
           : 'static/chunks/[name].[contenthash:8].css',
         chunkFilename: dev
           ? 'static/chunks/[name].chunk.css'
-          : 'static/chunks/[name].[contenthash:8].chunk.css',
+          : 'static/chunks/[name].[contenthash:8].chunk.css'
       })
     );
 
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          name: '[hash].[ext]',
-          publicPath: `${options.config.assetPrefix}/_next/static/images/`,
-          outputPath: `${isServer ? '../' : ''}static/images/`,
-        },
-      }],
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: '[hash].[ext]',
+            publicPath: `${options.config.assetPrefix}/_next/static/images/`,
+            outputPath: `${isServer ? '../' : ''}static/images/`
+          }
+        }
+      ]
     });
 
     config.module.rules.push({
       test: /\.(eot|ttf|woff|woff2|otf|ttc)$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: '[name].[hash].[ext]',
-          publicPath: `${options.config.assetPrefix}/_next/static/fonts/`,
-          outputPath: `${isServer ? '../' : ''}static/fonts/`,
-        },
-      }],
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]',
+            publicPath: `${options.config.assetPrefix}/_next/static/fonts/`,
+            outputPath: `${isServer ? '../' : ''}static/fonts/`
+          }
+        }
+      ]
     });
 
     return config;
-  },
+  }
 };
 
 module.exports = {
   pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
   ...c.next.conf,
-  ...conf,
+  ...conf
 };

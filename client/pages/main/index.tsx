@@ -5,13 +5,11 @@ import { of } from 'rxjs';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, rootEpics } from '../../redux/modules';
-import {
-  State as commonState,
-} from '../../redux/modules/common';
+import { State as commonState } from '../../redux/modules/common';
 import {
   searchCounter,
   fetchCounterController,
-  State as counterState,
+  State as counterState
 } from '../../redux/modules/counter';
 import styles from './style.scss';
 
@@ -27,19 +25,27 @@ const Main = (props: MainProps) => {
   const { num } = counter;
 
   const increment = () => {
-    dispatch(searchCounter({}, {
-      headers: {
-        requestId: 1
-      }
-    }));
+    dispatch(
+      searchCounter(
+        {},
+        {
+          headers: {
+            requestId: 1
+          }
+        }
+      )
+    );
   };
 
   const decrement = () => {
-    fetchCounterController({}, {
-      headers: {
-        requestId: 1
+    fetchCounterController(
+      {},
+      {
+        headers: {
+          requestId: 1
+        }
       }
-    }).then((res) => {
+    ).then(res => {
       if (res.success) {
         console.log(res.result);
         return;
@@ -74,14 +80,12 @@ const Main = (props: MainProps) => {
 };
 
 Main.getInitialProps = async ({ store }) => {
-  const resultAction = await rootEpics(
-    of(searchCounter())
-  ).toPromise();
+  const resultAction = await rootEpics(of(searchCounter())).toPromise();
   store.dispatch(resultAction);
   return {};
 };
 
 export default connect((state: State) => ({
   common: state.common,
-  counter: state.counter,
+  counter: state.counter
 }))(Main);

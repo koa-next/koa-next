@@ -7,7 +7,7 @@ export interface State {
 }
 
 const initialState: State = {
-  __: {},
+  __: {}
 };
 
 // actionTypes
@@ -19,17 +19,16 @@ export const setLocales = createAction(SET_LOCALES);
 // reducers
 const common = handleActions(
   {
-    [SET_LOCALES]: (state, { payload }) => {
+    [SET_LOCALES]: (state: State, { payload }) => {
       return { ...state, __: payload };
-    },
+    }
   },
   initialState
 );
 
 export const reducers = {
-  common,
+  common
 };
 
 // epics
 export const epics = [];
-

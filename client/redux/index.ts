@@ -22,7 +22,8 @@ export default function configureStore(initialState) {
     compose(
       applyedMiddleware,
       !isPro && !isNode && window.devToolsExtension
-        ? window.devToolsExtension() : f => f
+        ? window.devToolsExtension()
+        : f => f
     )
   );
 

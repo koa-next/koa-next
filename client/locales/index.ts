@@ -3,6 +3,5 @@ import zh from './zh';
 
 export default {
   en,
-  zh,
+  zh
 };
-
