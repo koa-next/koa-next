@@ -1,6 +1,6 @@
 {
   "name": "koa-next",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A FrameWork Based On Koa.js And Next.js",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "dev": "nodemon --config nodemon.json",
     "start": "node server.js",
     "docker": "sh .docker/build.sh && sh .docker/start.sh",
+    "release": "standard-version",
     "clean": "ts-clean"
   },
   "author": " <PLDaily pcd12321@gmail.com>",
@@ -35,6 +36,7 @@
     "nodemon": "^1.18.9",
     "null-loader": "^3.0.0",
     "prettier": "^1.18.2",
+    "standard-version": "^7.0.0",
     "ts-clean": "1.0.2",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
