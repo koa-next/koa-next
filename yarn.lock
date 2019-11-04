@@ -990,16 +990,6 @@
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/@types/mime/download/@types/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
-"@types/next-redux-wrapper@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npm.taobao.org/@types/next-redux-wrapper/download/@types/next-redux-wrapper-2.0.2.tgz#ab74f5988911b3403c4da91c6d7dabac4aa2f9fb"
-  integrity sha1-q3T1mIkRs0A8TakcbX2rrEqi+fs=
-  dependencies:
-    "@types/node" "*"
-    "@types/react" "*"
-    "@types/react-redux" "*"
-    redux "^3.6.0"
-
 "@types/node@*", "@types/node@^10.12.18":
   version "10.12.19"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.12.19.tgz#ca1018c26be01f07e66ac7fefbeb6407e4490c61"
@@ -1019,7 +1009,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@*", "@types/react-redux@^7.1.5":
+"@types/react-redux@^7.1.5":
   version "7.1.5"
   resolved "https://registry.npm.taobao.org/@types/react-redux/download/@types/react-redux-7.1.5.tgz#c7a528d538969250347aa53c52241051cf886bd3"
   integrity sha1-x6Uo1TiWklA0eqU8UiQQUc+Ia9M=
@@ -1050,11 +1040,6 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
-
-"@types/redux-actions@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npm.taobao.org/@types/redux-actions/download/@types/redux-actions-2.6.1.tgz#0940e97fa35ad3004316bddb391d8e01d2efa605"
-  integrity sha1-CUDpf6Na0wBDFr3bOR2OAdLvpgU=
 
 "@types/serve-static@*":
   version "1.13.2"
@@ -5539,11 +5524,6 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash-es@^4.2.1:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.15.tgz?cache=0&sync_timestamp=1563508077277&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash-es%2Fdownload%2Flodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
-  integrity sha1-Ib2Wg5NUQS8j16EDQOXqxu5FXXg=
-
 lodash._getnative@^3.0.0:
   version "3.9.1"
   resolved "http://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
@@ -7779,16 +7759,6 @@ redux-observable@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/redux-observable/download/redux-observable-1.1.0.tgz#323a8fe53e89fdb519be2807b55f08e21c13e6f1"
 
-redux@^3.6.0:
-  version "3.7.2"
-  resolved "https://registry.npm.taobao.org/redux/download/redux-3.7.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fredux%2Fdownload%2Fredux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
-  integrity sha1-BrcxIyFZAdJdBlvjQusCa8HIU3s=
-  dependencies:
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    loose-envify "^1.1.0"
-    symbol-observable "^1.0.3"
-
 redux@^4.0.0:
   version "4.0.4"
   resolved "https://registry.npm.taobao.org/redux/download/redux-4.0.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fredux%2Fdownload%2Fredux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
@@ -8743,7 +8713,7 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-symbol-observable@^1.0.3, symbol-observable@^1.2.0:
+symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
