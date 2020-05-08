@@ -3,12 +3,10 @@ import localConfig from './config.local';
 import prodConfig from './config.prod';
 import preConfig from './config.pre';
 import testConfig from './config.unittest';
-// tslint:disable-next-line: no-implicit-dependencies
-import { ServerConstructor } from 'next-server/dist/server/next-server';
 
 export interface IConfig {
   keys: string[];
-  next?: ServerConstructor;
+  next?: any;
 }
 
 const env = process.env.NEXT_ENV;

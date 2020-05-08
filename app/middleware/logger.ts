@@ -1,38 +1,33 @@
 import { Context } from 'koa';
-import * as log4js from 'log4js';
+import { createLogger, format, transports } from 'winston';
+const { combine, timestamp, printf } = format;
 
-const isPro = process.env.NODE_ENV === 'production';
+const logger = createLogger({
+  level: 'info',
+  format: combine(
+    timestamp({
+      format: 'YYYY-MM-DDTHH:mm:ss.SSS'
+    }),
+    printf(info => {
+      return `${info.timestamp} ${info.level.toUpperCase()} ${info.message}`;
+    })
+  ),
 
-const config = {
-  appenders: {
-    koaAccess: {
-      type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/koa-access.log',
-      pattern: '-yyyy-MM-dd',
-      compress: true
-    },
-    error: {
-      type: isPro ? 'dateFile' : 'console',
-      filename: 'logs/koa-error.log',
-      pattern: '-yyyy-MM-dd',
-      compress: true
-    },
-    koaError: {
-      type: 'logLevelFilter',
-      level: 'ERROR',
-      appender: 'error'
-    }
-  },
-  categories: {
-    default: {
-      appenders: ['koaAccess', 'koaError'],
+  transports: [
+    new transports.File({
+      filename: 'logs/nest-access.log',
       level: 'info'
-    }
-  }
-};
+    }),
+    new transports.File({
+      filename: 'logs/nest-error.log',
+      level: 'error'
+    })
+  ]
+});
 
-const logger = log4js.getLogger();
-log4js.configure(config);
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new transports.Console());
+}
 
 export default () => {
   return async (ctx: Context, next: () => Promise<any>) => {

@@ -7,12 +7,8 @@ module.exports = {
     'ts-jest': {
       tsConfig: 'tsconfig.koa.json'
     }
-  }, 
+  },
   moduleFileExtensions: ['ts', 'js'],
   // collectCoverage: true,
-  coveragePathIgnorePatterns: [
-    'node_modules',
-    'coverage',
-    'jest.config.js'
-  ]
+  coveragePathIgnorePatterns: ['node_modules', 'coverage', 'jest.config.js']
 };

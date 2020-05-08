@@ -32,22 +32,6 @@ const conf = {
     config.externals = config.externals || [];
     config.externals.push('log4js');
 
-    if (!dev) {
-      const originalEntry = config.entry;
-      config.entry = async () => {
-        const entries = await originalEntry();
-
-        if (
-          entries['main.js'] &&
-          !entries['main.js'].includes('@babel/polyfill')
-        ) {
-          entries['main.js'].unshift('@babel/polyfill');
-        }
-
-        return entries;
-      };
-    }
-
     if (!isServer) {
       config.optimization.splitChunks.cacheGroups.styles = {
         name: 'styles',
