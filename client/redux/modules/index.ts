@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 import { combineEpics } from 'redux-observable';
 import {
-  reducers as commonReducers,
   epics as commonEpics,
-  State as commonState
+  reducers as commonReducers,
+  State as commonState,
 } from './common';
 import {
-  reducers as counterReducers,
+  ActionTypes as counterActionTypes,
   epics as counterEpics,
-  State as counterState
+  reducers as counterReducers,
+  State as counterState,
 } from './counter';
 
 export interface State {
@@ -16,9 +17,11 @@ export interface State {
   common: commonState;
 }
 
+export type ActionTypes = counterActionTypes;
+
 export const rootReducers = combineReducers({
   ...counterReducers,
-  ...commonReducers
+  ...commonReducers,
 });
 
 const allEpics = [...counterEpics, ...commonEpics];

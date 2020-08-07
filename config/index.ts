@@ -15,27 +15,27 @@ const getConfig = () => {
   if (env && env === 'prod') {
     return {
       ...defaultConfig,
-      ...prodConfig
+      ...prodConfig,
     };
   }
 
   if (env && env === 'pre') {
     return {
       ...defaultConfig,
-      ...preConfig
+      ...preConfig,
     };
   }
 
   if (env && env === 'test') {
     return {
       ...defaultConfig,
-      ...testConfig
+      ...testConfig,
     };
   }
 
   return {
     ...defaultConfig,
-    ...localConfig
+    ...localConfig,
   };
 };
 

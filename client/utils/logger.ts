@@ -1,11 +1,11 @@
+import { Configuration } from 'log4js';
 import { isNode, isPro } from './env';
-import { Configuration, Logger } from 'log4js';
 
 interface Log {
-  fetch: Logger;
-  observable: Logger;
-  app: Logger;
-  document: Logger;
+  app: any;
+  document: any;
+  fetch: any;
+  observable: any;
 }
 
 const config: Configuration = {
@@ -13,40 +13,55 @@ const config: Configuration = {
     NextAccess: {
       type: isPro ? 'dateFile' : 'console',
       filename: 'logs/next-access.log',
-      pattern: '-yyyy-MM-dd',
-      compress: true
+      compress: true,
+      layout: {
+        type: 'pattern',
+        pattern: '%d %p %c %m',
+      },
     },
     error: {
       type: isPro ? 'dateFile' : 'console',
       filename: 'logs/next-error.log',
-      pattern: '-yyyy-MM-dd',
-      compress: true
+      compress: true,
+      layout: {
+        type: 'pattern',
+        pattern: '%d %p %c %m',
+      },
     },
     NextError: {
       type: 'logLevelFilter',
       level: 'ERROR',
-      appender: 'error'
-    }
+      appender: 'error',
+    },
   },
   categories: {
     default: {
       appenders: ['NextAccess', 'NextError'],
-      level: 'info'
-    }
-  }
+      level: 'info',
+    },
+  },
 };
 
-let logger: Log;
+let logger: Log = {
+  app: console,
+  document: console,
+  fetch: console,
+  observable: console,
+};
 
 if (isNode) {
   const log4js = require('log4js');
   log4js.configure(config);
   logger = {
+    app: log4js.getLogger('app'),
+    document: log4js.getLogger('document'),
     fetch: log4js.getLogger('fetch'),
     observable: log4js.getLogger('observable'),
-    app: log4js.getLogger('app'),
-    document: log4js.getLogger('document')
   };
 }
 
+export const app = logger.app;
+export const document = logger.document;
+export const fetch = logger.fetch;
+export const observable = logger.observable;
 export default logger;

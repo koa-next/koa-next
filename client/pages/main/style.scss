@@ -5,19 +5,19 @@
   justify-content: center;
   box-sizing: border-box;
   padding: 20px;
-  
+
   p {
     font-size: 32px;
   }
 
   .example {
     display: flex;
-    margin-left: 10px;
     align-items: center;
-    
-    >span {
-      font-size: 25px;
+    margin-left: 10px;
+
+    > span {
       margin-right: 15px;
+      font-size: 25px;
     }
   }
 }

@@ -1,28 +1,16 @@
 import axios, {
+  AxiosError,
+  AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosError,
-  AxiosInstance
 } from 'axios';
-import * as qs from 'querystring';
 import getConfig from 'next/config';
+import qs from 'querystring';
 import { isNode } from './env';
-import logger from './logger';
-
-interface Iprops {
-  body: {
-    string?: any;
-  };
-}
-
-export interface Response {
-  success: boolean;
-  errorMsg?: string;
-  result?: any;
-}
+import { fetch as logger } from './logger';
 
 const defaultConfig = {
-  timeout: 5000
+  timeout: 60000,
 };
 
 const { publicRuntimeConfig } = getConfig();
@@ -37,27 +25,32 @@ const checkStatus = (res: AxiosResponse) => {
   return Promise.reject(res);
 };
 
-export default (
+export default async (
   url: string,
-  { body, method = 'post', ...opts }: AxiosRequestConfig & Iprops
-): never | Promise<Response> => {
+  {
+    body,
+    method = 'post',
+    ...opts
+  }: AxiosRequestConfig & { body: KoaNext.IBody },
+): Promise<KoaNext.IResponse> => {
   const { headers: h } = opts;
   const headers = {
     'content-type': 'application/json; charset=utf-8',
-    ...h
+    ...h,
   };
 
   const config: AxiosRequestConfig = {
     ...defaultConfig,
     ...opts,
-    headers
+    headers,
   };
 
   const baseRequest: AxiosInstance = axios.create(config);
 
   if (isNode) {
     url = `${publicRuntimeConfig.api}${url}`;
-    logger.fetch.info(url);
+    logger.info(JSON.stringify(headers));
+    logger.info(url);
   }
 
   if (
@@ -74,6 +67,6 @@ export default (
   return baseRequest[method](url, body)
     .then(checkStatus)
     .catch((error: AxiosError) => {
-      throw error;
+      return Promise.reject(error);
     });
 };

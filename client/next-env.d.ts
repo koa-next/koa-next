@@ -1,11 +1,19 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-declare module '*.scss' {
-  const content: any;
-  export default content;
-}
+namespace KoaNext {
+  declare module '*.scss' {
+    const content: { [className: string]: string };
+    export default content;
+  }
 
-interface Window {
-  devToolsExtension?: any;
+  export interface IBody {
+    [propName: string]: any;
+  }
+
+  export interface IResponse {
+    success: boolean;
+    errorMsg?: string;
+    result?: any;
+  }
 }

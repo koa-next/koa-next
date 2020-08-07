@@ -1,28 +1,33 @@
+import { AxiosRequestConfig } from 'axios';
 import { createAction, handleActions } from 'redux-actions';
-import { createEpics, createObserverable } from '../../utils/observable';
 import fetch from '../../utils/fetch';
+import { createEpics, createObserverable } from '../../utils/observable';
 
 export interface State {
   num: number;
+  error: string | null;
 }
 
 const initialState: State = {
-  num: 0
+  num: 0,
+  error: null,
 };
 
 // actionTypes
-const FETCH_COUNTER = Symbol('FETCH_COUNTER');
-const FETCH_COUNTER_FAIL = Symbol('FETCH_COUNTER_FAIL');
-const FETCH_COUNTER_SUCCESS = Symbol('FETCH_COUNTER_SUCCESS');
+const FETCH_COUNTER = 'FETCH_COUNTER';
+const FETCH_COUNTER_FAIL = 'FETCH_COUNTER_FAIL';
+const FETCH_COUNTER_SUCCESS = 'FETCH_COUNTER_SUCCESS';
 
 // actions
 const searchCounterFail = createAction(FETCH_COUNTER_FAIL);
 const searchCounterSuccess = createAction(FETCH_COUNTER_SUCCESS);
 export const searchCounter = createAction(
   FETCH_COUNTER,
-  (payload = {}) => payload,
-  (_, meta = {}) => ({ ...meta })
+  (payload: KoaNext.IResponse) => payload,
+  (_, meta: AxiosRequestConfig) => meta,
 );
+
+export type ActionTypes = ReturnType<typeof searchCounter>;
 
 // reducers
 const counter = handleActions(
@@ -30,15 +35,15 @@ const counter = handleActions(
     [FETCH_COUNTER_SUCCESS]: (state, { payload }) => {
       return { ...state, ...payload };
     },
-    [FETCH_COUNTER_FAIL]: state => {
-      return { ...state };
-    }
+    [FETCH_COUNTER_FAIL]: (state, { payload }) => {
+      return { ...state, ...payload };
+    },
   },
-  initialState
+  initialState,
 );
 
 export const reducers = {
-  counter
+  counter,
 };
 
 // epics
@@ -47,10 +52,10 @@ const searchCounterEpics = createEpics(
   (payload = {}, meta = {}) =>
     fetch('/api/test', {
       body: payload,
-      ...meta
+      ...meta,
     }),
-  x => searchCounterSuccess(x.result),
-  x => searchCounterFail(x)
+  res => searchCounterSuccess({ num: res.result }),
+  res => searchCounterFail({ error: res.errorMsg }),
 );
 
 export const epics = [searchCounterEpics];
@@ -59,7 +64,7 @@ export const fetchCounterController = (data = {}, meta = {}) => {
   return createObserverable(
     fetch('/api/test', {
       body: data,
-      ...meta
-    })
+      ...meta,
+    }),
   ).toPromise();
 };

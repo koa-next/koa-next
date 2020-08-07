@@ -1,6 +1,6 @@
-import React from 'react';
-import Router from 'next/router';
 import { Button } from 'antd';
+import Router from 'next/router';
+import React from 'react';
 import { connect } from 'react-redux';
 import styles from './style.scss';
 

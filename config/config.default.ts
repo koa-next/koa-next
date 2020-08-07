@@ -1,5 +1,5 @@
 const config = {
-  keys: ['123456']
+  keys: ['123456'],
 };
 
 export default config;

@@ -11,13 +11,13 @@ const dataSchema = {
   properties: {
     result: {
       properties: {
-        msg: numberType
+        msg: numberType,
       },
-      required: ['num']
+      required: ['num'],
     },
-    success: booleanType
+    success: booleanType,
   },
-  required: ['result', 'success']
+  required: ['result', 'success'],
 };
 
 describe('test/app/controller/home.test.ts', () => {

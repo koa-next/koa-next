@@ -1,15 +1,15 @@
-import React from 'react';
-import Router from 'next/router';
 import { Button, message } from 'antd';
-import { of } from 'rxjs';
-import { Dispatch } from 'redux';
+import Router from 'next/router';
+import React from 'react';
 import { connect } from 'react-redux';
-import { State, rootEpics } from '../../redux/modules';
+import { Dispatch } from 'redux';
+import { of } from 'rxjs';
+import { rootEpics, State } from '../../redux/modules';
 import { State as commonState } from '../../redux/modules/common';
 import {
-  searchCounter,
   fetchCounterController,
-  State as counterState
+  searchCounter,
+  State as counterState,
 } from '../../redux/modules/counter';
 import styles from './style.scss';
 
@@ -30,10 +30,10 @@ const Main = (props: MainProps) => {
         {},
         {
           headers: {
-            requestId: 1
-          }
-        }
-      )
+            requestId: 1,
+          },
+        },
+      ),
     );
   };
 
@@ -42,9 +42,9 @@ const Main = (props: MainProps) => {
       {},
       {
         headers: {
-          requestId: 1
-        }
-      }
+          requestId: 1,
+        },
+      },
     ).then(res => {
       if (res.success) {
         console.log(res.result);
@@ -87,5 +87,5 @@ Main.getInitialProps = async ({ store }) => {
 
 export default connect((state: State) => ({
   common: state.common,
-  counter: state.counter
+  counter: state.counter,
 }))(Main);

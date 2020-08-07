@@ -19,12 +19,12 @@ const conf = {
             callback();
           }
         },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
       ];
 
       config.module.rules.unshift({
         test: antStyles,
-        use: 'null-loader'
+        use: 'null-loader',
       });
     }
 
@@ -37,7 +37,7 @@ const conf = {
         name: 'styles',
         test: new RegExp(`\\.+(${['css', 'scss'].join('|')})$`),
         chunks: 'all',
-        enforce: true
+        enforce: true,
       };
     }
 
@@ -45,7 +45,7 @@ const conf = {
       test: /\.css$/,
       include: [
         path.resolve(__dirname, '../client/styles'),
-        path.resolve(__dirname, '../node_modules/')
+        path.resolve(__dirname, '../node_modules/'),
       ],
       use: [
         dev && 'extracted-loader',
@@ -54,11 +54,9 @@ const conf = {
           loader: 'css-loader',
           options: {
             modules: false,
-            url: true,
-            import: false
-          }
-        }
-      ].filter(Boolean)
+          },
+        },
+      ].filter(Boolean),
     });
 
     config.module.rules.push({
@@ -70,25 +68,17 @@ const conf = {
           loader: 'css-loader',
           options: {
             modules: false,
-            url: true,
-            import: false
-          }
+          },
         },
-        'sass-loader'
-      ]
+        'sass-loader',
+      ],
     });
 
     const cssLoader = {
       loader: isServer ? 'css-loader/locals' : 'css-loader',
       options: {
         modules: true,
-        minimize: !dev,
-        sourceMap: dev,
-        camelCase: true,
-        localIdentName: '[local]_[hash:base64:5]',
-        importLoaders: 1,
-        namedExport: !isServer || undefined
-      }
+      },
     };
 
     const sassLoader = { loader: 'sass-loader' };
@@ -103,13 +93,10 @@ const conf = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]_[hash:base64:5]',
-              url: true,
-              import: false
-            }
+            },
           },
           sassLoader,
-          postcssLoader
+          postcssLoader,
         ].filter(Boolean);
 
     options.defaultLoaders.sass = loaders;
@@ -117,7 +104,7 @@ const conf = {
     config.module.rules.push({
       test: /\.(scss|sass)$/,
       use: options.defaultLoaders.sass,
-      include: [path.resolve(__dirname, '../client/pages')]
+      include: [path.resolve(__dirname, '../client/pages')],
     });
 
     config.plugins.push(
@@ -127,8 +114,8 @@ const conf = {
           : 'static/chunks/[name].[contenthash:8].css',
         chunkFilename: dev
           ? 'static/chunks/[name].chunk.css'
-          : 'static/chunks/[name].[contenthash:8].chunk.css'
-      })
+          : 'static/chunks/[name].[contenthash:8].chunk.css',
+      }),
     );
 
     config.module.rules.push({
@@ -140,10 +127,10 @@ const conf = {
             limit: 8192,
             name: '[hash].[ext]',
             publicPath: `${options.config.assetPrefix}/_next/static/images/`,
-            outputPath: `${isServer ? '../' : ''}static/images/`
-          }
-        }
-      ]
+            outputPath: `${isServer ? '../' : ''}static/images/`,
+          },
+        },
+      ],
     });
 
     config.module.rules.push({
@@ -154,14 +141,14 @@ const conf = {
           options: {
             name: '[name].[hash].[ext]',
             publicPath: `${options.config.assetPrefix}/_next/static/fonts/`,
-            outputPath: `${isServer ? '../' : ''}static/fonts/`
-          }
-        }
-      ]
+            outputPath: `${isServer ? '../' : ''}static/fonts/`,
+          },
+        },
+      ],
     });
 
     return config;
-  }
+  },
 };
 
 export default {
@@ -171,9 +158,9 @@ export default {
     conf: {
       pageExtensions: ['tsx', 'jsx', 'js', 'ts'],
       publicRuntimeConfig: {
-        api: 'http://127.0.0.1:3000'
+        api: 'http://127.0.0.1:3000',
       },
-      ...conf
-    }
-  }
+      ...conf,
+    },
+  },
 };

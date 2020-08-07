@@ -12,9 +12,7 @@ class HomeController {
     ctx.status = 200;
     ctx.body = {
       success: true,
-      result: {
-        num: 5
-      }
+      result: 5,
     };
   }
 }

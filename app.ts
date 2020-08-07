@@ -13,7 +13,7 @@ const isPro = process.env.NODE_ENV === 'production';
 
 const ssrCache = new LRUCache({
   max: 100,
-  maxAge: 1000 * 60 * 60 // 1hour
+  maxAge: 1000 * 60 * 60, // 1hour
 });
 
 onerror(app, {
@@ -25,15 +25,15 @@ onerror(app, {
     if (!isPro) {
       ctx.body.errStack = err.stack;
     }
-  }
+  },
 });
 
 if (config.next) {
   const appnext = Next(config.next);
   app.use(
     NextMiddleware(appnext, {
-      cache: isPro ? ssrCache : null
-    })
+      cache: isPro ? ssrCache : null,
+    }),
   );
 }
 
