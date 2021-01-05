@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "antd": "^4.5.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "koa": "^2.6.2",
     "koa-next-middleware": "^1.0.3",
     "koa-onerror": "^4.1.0",
